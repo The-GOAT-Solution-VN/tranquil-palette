@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+/* ----------------------------------------------------------------------------
+   Tranquil Palette — design tokens ported verbatim from the original export.
+---------------------------------------------------------------------------- */
+:root {
+  --tp-bg: #fbfaf7;
+  --tp-ink: #2c2c28;
+  --tp-ink-soft: #5d5d54;
+  --tp-ink-faint: #9a9a90;
+  --tp-olive: #5f7a2c;
+  --tp-olive-dark: #54702a;
+  --tp-olive-darker: #445016;
+  /* AA-compliant variants for small uppercase labels on the cream background. */
+  --tp-olive-label: #5b752c;
+  --tp-gold-label: #9a6410;
+  --tp-gold: #c8821e;
+  --tp-amber: #eea71e;
+  --tp-orange: #f47f15;
+  --tp-line: rgba(44, 44, 40, 0.1);
+  --tp-line-soft: rgba(44, 44, 40, 0.08);
+
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", serif;
+  --font-sans: var(--font-be-vietnam), "Be Vietnam Pro", sans-serif;
+}
+
+@theme inline {
+  --color-bg: var(--tp-bg);
+  --color-ink: var(--tp-ink);
+  --color-olive: var(--tp-olive);
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--tp-bg);
+  color: var(--tp-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #e4eccf;
+  color: #3c4a1d;
+}
+
+::-webkit-scrollbar {
+  width: 11px;
+}
+::-webkit-scrollbar-thumb {
+  background: #d8d8cf;
+  border-radius: 8px;
+  border: 3px solid var(--tp-bg);
+}
+
+/* ----------------------------------------------------------------------------
+   Ambient keyframes (float / drift / spin) used by the decorative blobs & mark.
+---------------------------------------------------------------------------- */
+@keyframes tpFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+@keyframes tpFloatB {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(16px); }
+}
+@keyframes tpDrift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(14px, -12px) rotate(5deg); }
+}
+@keyframes tpSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Respect reduced-motion: silence ambient loops & smooth scroll. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Accessible focus ring for keyboard users. */
+:focus-visible {
+  outline: 2px solid var(--tp-olive);
+  outline-offset: 2px;
+}
+
+/* ----------------------------------------------------------------------------
+   Interaction helpers (hover lifts / underlines / zooms) — ported from the
+   export's JS hover handlers into declarative CSS where possible.
+---------------------------------------------------------------------------- */
+.tp-nav-link:hover { color: var(--tp-olive); }
+
+.tp-cta-dark:hover { background: var(--tp-olive-darker) !important; }
+.tp-cta-green { transition: background .3s, transform .3s; }
+.tp-cta-green:hover { background: var(--tp-olive-dark) !important; transform: translateY(-2px); }
+.tp-cta-gold:hover { background: #d8950f !important; }
+
+.tp-link-underline {
+  border-bottom: 1px solid #cfcfc6;
+  transition: border-color .3s, color .3s;
+}
+.tp-link-underline:hover {
+  border-bottom-color: var(--tp-olive);
+  color: var(--tp-olive);
+}
+
+/* Card hover: zoom the image, reveal the caption. */
+.tp-card:hover [data-zoom] { transform: scale(1.045); }
+.tp-card:hover [data-cap] { opacity: 1 !important; transform: translateY(0) !important; }
+
+.tp-input { transition: border-color .3s; }
+.tp-input:focus { border-color: var(--tp-olive); }
+
+/* Responsive navigation. */
+.tp-burger { display: none; }
+@media (max-width: 860px) {
+  .tp-nav-links { display: none !important; }
+  .tp-burger { display: inline-flex !important; }
+}
+@media (min-width: 861px) {
+  .tp-mobile-menu { display: none !important; }
+}
+
+.tp-foot-link:hover { color: #EEA71E; }
+
+/* Responsive grids that collapse on small screens. */
+@media (max-width: 860px) {
+  .tp-footer-grid { grid-template-columns: 1fr 1fr !important; }
+  .tp-grid-2,
+  .tp-grid-3 { grid-template-columns: 1fr !important; }
+  .tp-hero-grid { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 560px) {
+  .tp-footer-grid { grid-template-columns: 1fr !important; }
+  .tp-stats-grid { grid-template-columns: 1fr 1fr !important; }
+}
