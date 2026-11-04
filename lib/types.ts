@@ -8,6 +8,9 @@ export interface ImageRef {
   url: string;
   alt: Locale | null;
   lqip?: string | null;
+  /** Intrinsic pixel size, when known — lets the gallery avoid cropping photos. */
+  width?: number;
+  height?: number;
 }
 
 export interface Artwork {
@@ -23,6 +26,8 @@ export interface Artwork {
   note: Locale;
   image: ImageRef | null;
   featured?: boolean;
+  /** False once the work is in a private collection. */
+  available: boolean;
 }
 
 export interface Post {

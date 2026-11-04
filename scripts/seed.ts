@@ -7,6 +7,8 @@
  * Requires: NEXT_PUBLIC_SANITY_PROJECT_ID, NEXT_PUBLIC_SANITY_DATASET,
  *           SANITY_API_WRITE_TOKEN
  */
+import { createReadStream } from "node:fs";
+import { resolve } from "node:path";
 import { createClient } from "@sanity/client";
 import {
   ARTWORKS,
@@ -42,6 +44,19 @@ const slugify = (s: string) =>
 
 const mediumLookup = Object.fromEntries(MEDIUMS.map((m) => [m.key, m.vi]));
 
+/** Upload a photo from /public (e.g. "/artworks/x.jpg") and return an image field. */
+async function uploadImage(src: string, alt: { en: string; vi: string }) {
+  const file = resolve(process.cwd(), "public", src.replace(/^\//, ""));
+  const asset = await client.assets.upload("image", createReadStream(file), {
+    filename: src.split("/").pop(),
+  });
+  return {
+    _type: "image",
+    asset: { _type: "reference", _ref: asset._id },
+    alt,
+  };
+}
+
 async function run() {
   const tx = client.transaction();
 
@@ -57,8 +72,9 @@ async function run() {
     });
   });
 
-  // Artworks.
-  ARTWORKS.forEach((a, i) => {
+  // Artworks (photographed works get their image uploaded first).
+  for (const [i, a] of ARTWORKS.entries()) {
+    const image = a.image ? await uploadImage(a.image.src, a.image.alt) : undefined;
     tx.createOrReplace({
       _id: `artwork-${a.id}`,
       _type: "artwork",
@@ -71,11 +87,12 @@ async function run() {
       heightCm: a.h,
       tone: a.tone,
       note: a.note,
-      available: true,
+      ...(image ? { image } : {}),
+      available: a.available ?? true,
       featured: !!a.featured,
       order: i,
     });
-  });
+  }
 
   // Journal posts.
   POSTS.forEach((p, i) => {

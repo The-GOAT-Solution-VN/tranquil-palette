@@ -6,14 +6,14 @@ test.describe("content / CMS integration", () => {
     await page.goto("/");
     await revealAll(page);
     await expect(page.getByRole("heading", { name: "Selected works" })).toBeVisible();
-    await expect(page.getByText("Summer Lotus").first()).toBeVisible();
+    await expect(page.getByText("The Fragrant Family Garden").first()).toBeVisible();
     await expect(page.getByRole("heading", { name: "Upcoming exhibition" })).toBeVisible();
   });
 
-  test("gallery renders all twelve seeded works", async ({ page }) => {
+  test("gallery renders all seventeen seeded works", async ({ page }) => {
     await page.goto("/gallery");
     const cards = page.locator('[data-testid="gal-container"] button.tp-card');
-    await expect(cards).toHaveCount(12);
+    await expect(cards).toHaveCount(17);
   });
 
   test("exhibitions render with status pills", async ({ page }) => {
@@ -24,9 +24,9 @@ test.describe("content / CMS integration", () => {
   });
 
   test("artworks without an image fall back to a gradient tone", async ({ page }) => {
-    // Seed data has no images, so each card's image box must carry a gradient.
+    // Only the five photographed works have images; the rest must show a gradient.
     await page.goto("/gallery");
-    const box = page.locator('[data-testid="gal-container"] [data-zoom]').first();
+    const box = page.locator('[data-testid="gal-container"] [data-zoom]').last();
     const bg = await box.evaluate((el) => getComputedStyle(el).backgroundImage);
     expect(bg).toContain("gradient");
   });

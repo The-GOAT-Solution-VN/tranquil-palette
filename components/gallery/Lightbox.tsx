@@ -104,10 +104,10 @@ export function Lightbox({
         }}
       >
         <div style={{ background: "#fff", padding: 12, borderRadius: 2, boxShadow: "0 40px 90px -40px rgba(0,0,0,0.6)" }}>
-          <div style={{ position: "relative", width: "100%", paddingTop: a.w && a.h ? `${(a.h / a.w) * 100}%` : "120%", background: toneGradient(a.tone) }}>
+          <div style={{ position: "relative", width: "100%", paddingTop: ratioPad(a), background: toneGradient(a.tone) }}>
             {a.image?.url && (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={a.image.url} alt={loc(a.title) ?? "Artwork"} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+              <img src={a.image.url} alt={loc(a.image.alt) ?? loc(a.title) ?? "Artwork"} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: a.image.width ? "contain" : "cover" }} />
             )}
           </div>
         </div>
@@ -121,6 +121,7 @@ export function Lightbox({
             <dt style={dtStyle}>{t.lbMedium}</dt><dd style={ddStyle}>{loc(a.medium)}</dd>
             {size && (<><dt style={dtStyle}>{t.lbSize}</dt><dd style={ddStyle}>{size}</dd></>)}
             <dt style={dtStyle}>{t.lbYear}</dt><dd style={ddStyle}>{a.year}</dd>
+            {!a.available && (<><dt style={dtStyle}>{t.lbCollection}</dt><dd style={ddStyle}>{t.lbPrivate}</dd></>)}
           </dl>
 
           <p style={{ fontSize: 14.5, lineHeight: 1.8, color: "#b1b1a6", fontWeight: 300, margin: "0 0 26px" }}>{loc(a.note)}</p>
@@ -154,6 +155,13 @@ export function Lightbox({
       </div>
     </div>
   );
+}
+
+/** Box proportions: the photo's own ratio when known, else the stated cm size. */
+function ratioPad(a: Artwork): string {
+  if (a.image?.width && a.image?.height) return `${(a.image.height / a.image.width) * 100}%`;
+  if (a.w && a.h) return `${(a.h / a.w) * 100}%`;
+  return "120%";
 }
 
 function iconBtn(top?: number, right?: number): React.CSSProperties {
