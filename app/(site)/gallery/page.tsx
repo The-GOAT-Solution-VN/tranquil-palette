@@ -6,7 +6,7 @@ import { getArtworks, getSeries } from "@/lib/data";
 export const metadata: Metadata = {
   title: "The Collection",
   description:
-    "More than thirty true-to-life paintings of Hanoi and its quiet moments, in oil and acrylic by Huong Pham.",
+    "More than thirty true-to-life paintings of Hanoi and its quiet moments, in oil and acrylic by Kim Pham.",
 };
 
 export default async function GalleryPage() {

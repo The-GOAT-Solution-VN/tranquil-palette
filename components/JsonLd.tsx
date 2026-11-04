@@ -12,7 +12,7 @@ export function JsonLd() {
         "@id": `${BASE}#gallery`,
         name: "Tranquil Palette",
         description:
-          "A home gallery in Hanoi presenting the true-to-life paintings of Huong Pham, in oil and acrylic on canvas.",
+          "A home gallery in Hanoi presenting the true-to-life paintings of Kim Pham, in oil and acrylic on canvas.",
         url: BASE,
         address: {
           "@type": "PostalAddress",
@@ -27,7 +27,7 @@ export function JsonLd() {
       {
         "@type": "Person",
         "@id": `${BASE}#artist`,
-        name: "Huong Pham",
+        name: "Kim Pham",
         jobTitle: "Painter",
         nationality: "Vietnamese",
         description:

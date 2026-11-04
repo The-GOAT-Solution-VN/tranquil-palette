@@ -10,10 +10,10 @@ test.describe("content / CMS integration", () => {
     await expect(page.getByRole("heading", { name: "Upcoming exhibition" })).toBeVisible();
   });
 
-  test("gallery renders all seventeen seeded works", async ({ page }) => {
+  test("gallery renders all five seeded works", async ({ page }) => {
     await page.goto("/gallery");
     const cards = page.locator('[data-testid="gal-container"] button.tp-card');
-    await expect(cards).toHaveCount(17);
+    await expect(cards).toHaveCount(5);
   });
 
   test("exhibitions render with status pills", async ({ page }) => {
@@ -23,10 +23,9 @@ test.describe("content / CMS integration", () => {
     await expect(page.getByText("Past").first()).toBeVisible();
   });
 
-  test("artworks without an image fall back to a gradient tone", async ({ page }) => {
-    // Only the five photographed works have images; the rest must show a gradient.
+  test("artwork image boxes keep a gradient tone behind the photo", async ({ page }) => {
     await page.goto("/gallery");
-    const box = page.locator('[data-testid="gal-container"] [data-zoom]').last();
+    const box = page.locator('[data-testid="gal-container"] [data-zoom]').first();
     const bg = await box.evaluate((el) => getComputedStyle(el).backgroundImage);
     expect(bg).toContain("gradient");
   });

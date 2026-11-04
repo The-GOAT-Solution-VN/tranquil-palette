@@ -57,8 +57,16 @@ async function uploadImage(src: string, alt: { en: string; vi: string }) {
   };
 }
 
+/** Placeholder content from the original design, removed from the site. */
+const LEGACY_IDS = [
+  ...Array.from({ length: 12 }, (_, i) => `artwork-${i + 1}`),
+  "series-hanoi-streets",
+  "series-landscapes",
+];
+
 async function run() {
   const tx = client.transaction();
+  LEGACY_IDS.forEach((id) => tx.delete(id));
 
   // Series (deterministic ids so artworks can reference them).
   const seriesId = (key: string) => `series-${slugify(key)}`;
@@ -131,7 +139,7 @@ async function run() {
   tx.createOrReplace({
     _id: "siteSettings",
     _type: "siteSettings",
-    artistName: "Huong Pham",
+    artistName: "Kim Pham",
     contactEmail: VISIT_INFO[2].value.en,
     contactPhone: VISIT_INFO[3].value.en,
     stats: STATS.map((s) => ({

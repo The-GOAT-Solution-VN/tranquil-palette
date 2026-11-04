@@ -162,7 +162,7 @@ export function Footer() {
             gap: 12,
           }}
         >
-          <span>© {new Date().getFullYear()} Tranquil Palette · Huong Pham</span>
+          <span>© {new Date().getFullYear()} Tranquil Palette · Kim Pham</span>
           <span>Hanoi, Vietnam</span>
         </div>
       </div>

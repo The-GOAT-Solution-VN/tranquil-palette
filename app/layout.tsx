@@ -27,11 +27,11 @@ export const metadata: Metadata = {
     template: "%s · Tranquil Palette",
   },
   description:
-    "The private home gallery of Huong Pham — true-to-life paintings in oil and acrylic, drawn from a quiet, attentive life in Hanoi.",
+    "The private home gallery of Kim Pham — true-to-life paintings in oil and acrylic, drawn from a quiet, attentive life in Hanoi.",
   openGraph: {
     title: "Tranquil Palette — A home gallery in Hanoi",
     description:
-      "True-to-life paintings in oil and acrylic by Huong Pham, shown in her home gallery in Hanoi.",
+      "True-to-life paintings in oil and acrylic by Kim Pham, shown in her home gallery in Hanoi.",
     type: "website",
     siteName: "Tranquil Palette",
   },

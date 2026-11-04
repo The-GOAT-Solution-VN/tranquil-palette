@@ -3,9 +3,9 @@ import { AboutView } from "@/components/about/AboutView";
 import { getArtworks, getSiteContent } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "The Artist — Huong Pham",
+  title: "The Artist — Kim Pham",
   description:
-    "Huong Pham took up the brush at sixty. Today her home gallery in Hanoi, Tranquil Palette, holds more than thirty true-to-life paintings.",
+    "Kim Pham took up the brush at sixty. Today her home gallery in Hanoi, Tranquil Palette, holds more than thirty true-to-life paintings.",
 };
 
 export default async function AboutPage() {
