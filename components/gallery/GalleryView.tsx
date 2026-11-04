@@ -19,6 +19,10 @@ const layoutOptions: { k: Layout; icon: string }[] = [
 
 /** Real aspect ratio (padding-top) from cm dimensions, clamped to a tasteful range. */
 function padOf(a: Artwork): string {
+  // Prefer the photograph's own proportions so framed works aren't cropped.
+  if (a.image?.width && a.image?.height) {
+    return `${Math.min(150, Math.max(75, (a.image.height / a.image.width) * 100))}%`;
+  }
   if (!a.w || !a.h) return "120%";
   const ratio = (a.h / a.w) * 100;
   return `${Math.min(150, Math.max(75, ratio))}%`;
@@ -166,7 +170,7 @@ export function GalleryView({
                     >
                       <div style={{ background: "#fff", padding: 9, boxShadow: "0 22px 50px -34px rgba(44,44,40,0.4)", borderRadius: 2, overflow: "hidden" }}>
                         <div style={{ position: "relative", overflow: "hidden" }}>
-                          <ArtworkImage image={a.image} tone={a.tone} paddingTop={layout === "grid" ? "118%" : padOf(a)} alt={loc(a.title) ?? "Artwork"} zoom sizes="(max-width:768px) 100vw, 33vw" />
+                          <ArtworkImage image={a.image} tone={a.tone} paddingTop={layout === "grid" ? "118%" : padOf(a)} alt={loc(a.image?.alt) ?? loc(a.title) ?? "Artwork"} zoom sizes="(max-width:768px) 100vw, 33vw" />
                           <span style={{ position: "absolute", left: 10, bottom: 10, fontFamily: "var(--font-sans)", fontSize: 9, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(40,40,34,0.4)" }}>{loc(a.series)}</span>
                           <div data-cap style={capStyle}>
                             <div style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", fontSize: 23, color: "#fff", lineHeight: 1.1 }}>{a.title.vi}</div>

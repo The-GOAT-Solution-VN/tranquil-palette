@@ -29,6 +29,10 @@ export interface SeedArtwork {
   tone: Tone;
   note: Locale;
   featured?: boolean;
+  /** False once the work belongs to a private collector. Defaults to true. */
+  available?: boolean;
+  /** Photograph of the finished work, served from /public. */
+  image?: { src: string; width: number; height: number; alt: Locale };
 }
 
 export interface SeedPost {
@@ -56,6 +60,8 @@ export const SERIES: { key: string; vi: string }[] = [
   { key: "Still Life", vi: "Tĩnh Vật" },
   { key: "Portraits", vi: "Chân Dung" },
   { key: "Landscapes", vi: "Phong Cảnh" },
+  { key: "Spiritual", vi: "Tâm Linh" },
+  { key: "Animals", vi: "Động Vật" },
 ];
 
 export const MEDIUMS: { key: string; vi: string }[] = [
@@ -64,6 +70,59 @@ export const MEDIUMS: { key: string; vi: string }[] = [
 ];
 
 export const ARTWORKS: SeedArtwork[] = [
+  // --- Photographed works (ids 13–17), shown first ---------------------------
+  {
+    id: 13, title: "The Fragrant Family Garden", vi: "Vườn Nhà Thơm",
+    series: "Portraits", seriesVi: "Chân Dung", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2026, w: 60, h: 80, tone: "green", featured: true,
+    note: {
+      en: "A young woman in a conical nón lá peers up through glossy leaves, white blossom and ripening rambutan in the family garden at Long Thành, Ho Chi Minh City. Shafts of sunlight thread the canopy in this lush, affectionate portrait. February 2026.",
+      vi: "Một thiếu nữ đội nón lá ngước nhìn qua tán lá xanh bóng, những chùm hoa trắng và chôm chôm chín đỏ trong khu vườn nhà ở Long Thành, TP. Hồ Chí Minh. Những tia nắng xuyên qua tán lá trong bức chân dung tràn đầy sức sống và tình cảm này. Tháng 2/2026.",
+    },
+    image: { src: "/artworks/fragrant-family-garden.jpg", width: 1413, height: 1800, alt: { en: "Painting of a smiling young woman in a conical hat among rambutan and citrus branches", vi: "Tranh thiếu nữ đội nón lá mỉm cười giữa vườn chôm chôm và cây có múi" } },
+  },
+  {
+    id: 14, title: "Buddha of Prosperity", vi: "Phật Khai Tài Lộc",
+    series: "Spiritual", seriesVi: "Tâm Linh", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2026, w: 90, h: 120, tone: "gold", featured: true, available: false,
+    note: {
+      en: "A serene Buddha in white and gold robes holds an open lotus before a radiant mandala halo. Built up in raised acrylic relief, the gold ornament and beaded halo catch the light and invite blessings of fortune and prosperity. January 2026.",
+      vi: "Đức Phật an nhiên trong y phục trắng vàng, tay nâng đóa sen nở trước vầng hào quang mandala rực rỡ. Tranh được đắp nổi bằng acrylic; những chi tiết vàng và vòng hạt hào quang bắt sáng, gửi gắm lời cầu tài lộc và an lành. Tháng 1/2026.",
+    },
+    image: { src: "/artworks/buddha-of-prosperity.jpg", width: 1142, height: 1500, alt: { en: "Painting of a Buddha in white and gold robes holding a lotus before a golden halo, in a gilded frame", vi: "Tranh Đức Phật áo trắng vàng nâng đóa sen trước vầng hào quang vàng, trong khung mạ vàng" } },
+  },
+  {
+    id: 15, title: "Black Cat with Jade Eyes", vi: "Mèo Đen Mắt Ngọc",
+    series: "Animals", seriesVi: "Động Vật", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2024, w: 65, h: 85, tone: "green", featured: true, available: false,
+    note: {
+      en: "A black-and-white cat sits poised on a wooden stump, glancing over its shoulder with luminous green eyes. Behind it, a sunlit garden glows in golden yellows and deep greens. June 2024.",
+      vi: "Chú mèo đen trắng ngồi trên gốc cây, ngoái nhìn với đôi mắt xanh ngọc long lanh. Phía sau là khu vườn ngập nắng với sắc vàng rực và xanh thẫm. Tháng 6/2024.",
+    },
+    image: { src: "/artworks/black-cat-with-jade-eyes.jpg", width: 1180, height: 1500, alt: { en: "Painting of a black-and-white cat with green eyes seated on a wooden stump before a sunlit garden", vi: "Tranh chú mèo đen trắng mắt xanh ngồi trên gốc cây trước khu vườn nắng" } },
+  },
+  {
+    id: 16, title: "Shakyamuni Buddha", vi: "Đức Phật Thích Ca Mâu Ni",
+    series: "Spiritual", seriesVi: "Tâm Linh", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2025, w: 60, h: 80, tone: "sage", available: false,
+    note: {
+      en: "The Buddha gazes down in stillness, cradling a luminous lotus above rippling water, with a mountain pagoda and waterfall beyond. Painted in thick, sculpted acrylic relief with a gilded, glowing halo. November 2025.",
+      vi: "Đức Phật cúi nhìn trong tĩnh lặng, nâng niu đóa sen toả sáng trên mặt nước gợn sóng; xa xa là ngôi chùa trên núi và thác nước. Tranh được đắp nổi dày bằng acrylic, với vầng hào quang vàng rực. Tháng 11/2025.",
+    },
+    image: { src: "/artworks/shakyamuni-buddha.jpg", width: 1115, height: 1500, alt: { en: "Textured painting of the Buddha holding a lotus above rippling water, with a pagoda and waterfall behind", vi: "Tranh đắp nổi Đức Phật nâng đóa sen trên mặt nước, phía sau là chùa và thác nước" } },
+  },
+  {
+    id: 17, title: "Sunflower", vi: "Hoa Hướng Dương",
+    series: "Still Life", seriesVi: "Tĩnh Vật", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2024, w: 50, h: 50, tone: "gold", available: false,
+    note: {
+      en: "A single sunflower turns toward the light, its golden petals and richly textured seed head set against a soft, misty olive ground. August 2024.",
+      vi: "Một đóa hướng dương hướng về phía ánh sáng, cánh vàng rực và nhụy hoa giàu chất liệu nổi bật trên nền xanh ô-liu mờ sương. Tháng 8/2024.",
+    },
+    image: { src: "/artworks/sunflower.jpg", width: 1356, height: 1500, alt: { en: "Painting of a golden sunflower with green leaves against a misty olive background", vi: "Tranh hoa hướng dương vàng cùng lá xanh trên nền ô-liu mờ sương" } },
+  },
+
+  // --- Original design content (no photograph yet) ----------------------------
   { id: 1, title: "Summer Lotus", vi: "Sen Mùa Hạ", series: "Still Life", seriesVi: "Tĩnh Vật", medium: "Oil on canvas", mediumVi: "Sơn dầu", year: 2024, w: 80, h: 100, tone: "sage", featured: true, note: { en: "Lotus blooms gathered from the lake near her home, painted in the soft light of a Hanoi morning.", vi: "Những bông sen hái từ hồ gần nhà, vẽ trong ánh sáng dịu của một buổi sáng Hà Nội." } },
   { id: 2, title: "Old Quarter Morning", vi: "Phố Cổ Buổi Sáng", series: "Hanoi Streets", seriesVi: "Phố Cổ", medium: "Acrylic on canvas", mediumVi: "Acrylic", year: 2023, w: 90, h: 60, tone: "peach", featured: true, note: { en: "The narrow streets of the Old Quarter as vendors set out their wares and the city slowly wakes.", vi: "Những con phố hẹp của Phố Cổ khi người bán dọn hàng và thành phố từ từ thức giấc." } },
   { id: 3, title: "My Grandmother", vi: "Bà Tôi", series: "Portraits", seriesVi: "Chân Dung", medium: "Oil on canvas", mediumVi: "Sơn dầu", year: 2022, w: 60, h: 80, tone: "warm", featured: true, note: { en: "A tender portrait drawn from memory — the quiet dignity of an elder who shaped a family.", vi: "Một bức chân dung dịu dàng vẽ từ ký ức — sự đường hoàng lặng lẽ của người bà đã dựng nên một gia đình." } },

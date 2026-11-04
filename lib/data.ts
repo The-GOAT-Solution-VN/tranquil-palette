@@ -86,8 +86,11 @@ const seedArtworks: Artwork[] = ARTWORKS.map((a) => ({
   h: a.h,
   tone: a.tone,
   note: a.note,
-  image: null,
+  image: a.image
+    ? { url: a.image.src, alt: a.image.alt, width: a.image.width, height: a.image.height }
+    : null,
   featured: a.featured,
+  available: a.available ?? true,
 }));
 
 const seedPosts: Post[] = POSTS.map((p, i) => ({
@@ -257,6 +260,7 @@ function mapArtwork(a: Record<string, unknown>): Artwork {
     note: (a.note as Locale) ?? { en: "", vi: "" },
     image: imageRef(a.image, 1100),
     featured: (a.featured as boolean) ?? false,
+    available: (a.available as boolean) ?? true,
   };
 }
 
