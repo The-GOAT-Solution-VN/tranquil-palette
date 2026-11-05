@@ -16,7 +16,8 @@ export function JsonLd() {
         url: BASE,
         address: {
           "@type": "PostalAddress",
-          addressLocality: "Tây Hồ, Hanoi",
+          streetAddress: "6 Nam Hong Street",
+          addressLocality: "Thanh Xuan Ward, Hanoi",
           addressCountry: "VN",
         },
         email: "hello@tranquilpalette.art",
