@@ -181,11 +181,11 @@ export const ARTWORKS: SeedArtwork[] = [
     image: { src: "/artworks/the-rooster.jpg", width: 1310, height: 1800, alt: { en: "Painting of a rooster with orange and blue-black plumage and a red comb, standing before a glowing meadow, in a dark wood frame", vi: "Tranh chú gà trống lông cam và xanh đen, mào đỏ, đứng trước đồng cỏ lung linh, trong khung gỗ sẫm" } },
   },
   {
-    id: 24, title: "Auckland Evening", vi: "Chiều Auckland",
+    id: 24, title: "Auckland Dusk", vi: "Chiều Auckland",
     series: "Landscapes", seriesVi: "Phong Cảnh", medium: "Acrylic on canvas", mediumVi: "Acrylic",
     year: 2025, w: 62, h: 82, tone: "orange", available: false,
     note: {
-      en: "A street runs straight toward the setting sun between towering buildings, with a construction crane and traffic lights glowing red in the dusk. The Sky Tower rises beyond bare branches as birds wheel overhead, and saturated oranges, magentas and violets turn Auckland's evening into a vision of fire. 2025.",
+      en: "A street runs straight toward the setting sun between towering buildings, with a construction crane and traffic lights glowing red in the dusk. The Sky Tower rises beyond bare branches as birds wheel overhead, and saturated oranges, magentas and violets turn Auckland's dusk into a vision of fire. 2025.",
       vi: "Con đường thẳng tắp hướng về mặt trời lặn giữa những toà nhà cao tầng; cần cẩu và đèn giao thông đỏ rực trong hoàng hôn. Tháp Sky Tower nhô lên sau những cành cây trơ lá, đàn chim sải cánh trên cao; những sắc cam, tím và hồng sẫm rực lửa biến buổi chiều Auckland thành một thị kiến cháy bỏng. Năm 2025.",
     },
     image: { src: "/artworks/auckland-evening.jpg", width: 1219, height: 1800, alt: { en: "Painting of an Auckland street at sunset in fiery oranges and violets, with the Sky Tower, a crane and traffic lights", vi: "Tranh con phố Auckland lúc hoàng hôn với sắc cam và tím rực lửa, có tháp Sky Tower, cần cẩu và đèn giao thông" } },
