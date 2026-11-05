@@ -185,8 +185,8 @@ export const ARTWORKS: SeedArtwork[] = [
     series: "Landscapes", seriesVi: "Phong Cảnh", medium: "Acrylic on canvas", mediumVi: "Acrylic",
     year: 2025, w: 62, h: 82, tone: "orange", available: false,
     note: {
-      en: "A street runs straight toward the setting sun between towering buildings, with a construction crane and traffic lights glowing red in the dusk. The Sky Tower rises beyond bare branches as birds wheel overhead, and saturated oranges, magentas and violets turn Auckland's dusk into a vision of fire. 2025.",
-      vi: "Con đường thẳng tắp hướng về mặt trời lặn giữa những toà nhà cao tầng; cần cẩu và đèn giao thông đỏ rực trong hoàng hôn. Tháp Sky Tower nhô lên sau những cành cây trơ lá, đàn chim sải cánh trên cao; những sắc cam, tím và hồng sẫm rực lửa biến buổi chiều Auckland thành một thị kiến cháy bỏng. Năm 2025.",
+      en: "A street runs straight toward the setting sun between towering buildings, with a construction crane and traffic lights glowing red in the dusk. The Sky Tower rises beyond bare branches as birds wheel overhead, and saturated oranges, magentas and violets turn Auckland's dusk into a vision of fire. September 2025.",
+      vi: "Con đường thẳng tắp hướng về mặt trời lặn giữa những toà nhà cao tầng; cần cẩu và đèn giao thông đỏ rực trong hoàng hôn. Tháp Sky Tower nhô lên sau những cành cây trơ lá, đàn chim sải cánh trên cao; những sắc cam, tím và hồng sẫm rực lửa biến buổi chiều Auckland thành một thị kiến cháy bỏng. Tháng 9/2025.",
     },
     image: { src: "/artworks/auckland-evening.jpg", width: 1219, height: 1800, alt: { en: "Painting of an Auckland street at sunset in fiery oranges and violets, with the Sky Tower, a crane and traffic lights", vi: "Tranh con phố Auckland lúc hoàng hôn với sắc cam và tím rực lửa, có tháp Sky Tower, cần cẩu và đèn giao thông" } },
   },
@@ -201,7 +201,7 @@ export const ARTWORKS: SeedArtwork[] = [
     image: { src: "/artworks/golden-season.jpg", width: 1800, height: 1057, alt: { en: "Wide painting of golden rice fields with a winding canal, ducks and young women in traditional dress resting under a tree", vi: "Tranh toàn cảnh cánh đồng lúa vàng với dòng kênh uốn lượn, đàn vịt và các thiếu nữ trong trang phục truyền thống nghỉ dưới gốc cây" } },
   },
   {
-    id: 26, title: "April Returns", vi: "Tháng Tư Về",
+    id: 26, title: "April's Arrived", vi: "Tháng Tư Về",
     series: "Portraits", seriesVi: "Chân Dung", medium: "Acrylic on canvas", mediumVi: "Acrylic",
     year: 2026, w: 60, h: 80, tone: "peach",
     note: {

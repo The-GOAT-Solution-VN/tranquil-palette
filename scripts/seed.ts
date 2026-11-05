@@ -49,7 +49,7 @@ const client = createClient({
 });
 
 const slugify = (s: string) =>
-  s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  s.toLowerCase().replace(/['’]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
 const mediumLookup = Object.fromEntries(MEDIUMS.map((m) => [m.key, m.vi]));
 
