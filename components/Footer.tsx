@@ -162,7 +162,7 @@ export function Footer() {
             gap: 12,
           }}
         >
-          <span>© {new Date().getFullYear()} Tranquil Palette · {lang === "VI" ? "Phạm Hương" : "Kim Pham"}</span>
+          <span>© {new Date().getFullYear()} Tranquil Palette · {lang === "VI" ? "Kim Hương" : "Kim Pham"}</span>
           <span>Hanoi, Vietnam</span>
         </div>
       </div>
