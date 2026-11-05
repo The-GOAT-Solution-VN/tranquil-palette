@@ -2,10 +2,16 @@
  * Seeds a Sanity dataset from the bundled design content (lib/seed.ts).
  *
  * Usage (after creating a project + dataset and setting env):
- *   node --env-file=.env.local scripts/seed.ts
+ *   node --env-file=.env.local scripts/seed.ts [--artworks-only] [--dry-run]
  *
- * Requires: NEXT_PUBLIC_SANITY_PROJECT_ID, NEXT_PUBLIC_SANITY_DATASET,
- *           SANITY_API_WRITE_TOKEN
+ *   --artworks-only  Only replace artworks + series (and delete the legacy
+ *                    placeholders). Leaves site settings, journal posts and
+ *                    exhibitions untouched, so Studio edits to those survive.
+ *   --dry-run        Print what would be written; needs no token and makes no
+ *                    network calls.
+ *
+ * Requires (unless --dry-run): NEXT_PUBLIC_SANITY_PROJECT_ID,
+ *   NEXT_PUBLIC_SANITY_DATASET, SANITY_API_WRITE_TOKEN
  */
 import { createReadStream } from "node:fs";
 import { resolve } from "node:path";
@@ -24,7 +30,10 @@ const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
 const token = process.env.SANITY_API_WRITE_TOKEN;
 
-if (!projectId || !token) {
+const ARTWORKS_ONLY = process.argv.includes("--artworks-only");
+const DRY_RUN = process.argv.includes("--dry-run");
+
+if (!DRY_RUN && (!projectId || !token)) {
   console.error(
     "Missing NEXT_PUBLIC_SANITY_PROJECT_ID or SANITY_API_WRITE_TOKEN. Aborting.",
   );
@@ -32,7 +41,7 @@ if (!projectId || !token) {
 }
 
 const client = createClient({
-  projectId,
+  projectId: projectId || "dry-run",
   dataset,
   apiVersion: "2026-02-01",
   token,
@@ -46,6 +55,9 @@ const mediumLookup = Object.fromEntries(MEDIUMS.map((m) => [m.key, m.vi]));
 
 /** Upload a photo from /public (e.g. "/artworks/x.jpg") and return an image field. */
 async function uploadImage(src: string, alt: { en: string; vi: string }) {
+  if (DRY_RUN) {
+    return { _type: "image", asset: { _type: "reference", _ref: `(dry-run) ${src}` }, alt };
+  }
   const file = resolve(process.cwd(), "public", src.replace(/^\//, ""));
   const asset = await client.assets.upload("image", createReadStream(file), {
     filename: src.split("/").pop(),
@@ -64,9 +76,23 @@ const LEGACY_IDS = [
   "series-landscapes",
 ];
 
+type Mutation = { op: string; id: string };
+const planned: Mutation[] = [];
+
 async function run() {
-  const tx = client.transaction();
-  LEGACY_IDS.forEach((id) => tx.delete(id));
+  const real = client.transaction();
+  // Records each mutation so --dry-run can print the plan instead of committing.
+  const tx = {
+    delete: (id: string) => { planned.push({ op: "delete", id }); real.delete(id); },
+    createOrReplace: (doc: { _id: string; _type: string }) => {
+      planned.push({ op: `createOrReplace ${doc._type}`, id: doc._id });
+      real.createOrReplace(doc);
+    },
+  };
+  LEGACY_IDS.forEach((id) => {
+    tx.delete(id);
+    tx.delete(`drafts.${id}`);
+  });
 
   // Series (deterministic ids so artworks can reference them).
   const seriesId = (key: string) => `series-${slugify(key)}`;
@@ -102,7 +128,8 @@ async function run() {
     });
   }
 
-  // Journal posts.
+  // Journal posts, exhibitions and site settings (skipped with --artworks-only).
+  if (!ARTWORKS_ONLY) {
   POSTS.forEach((p, i) => {
     tx.createOrReplace({
       _id: `post-${p.slug}`,
@@ -154,9 +181,18 @@ async function run() {
     })),
   });
 
-  await tx.commit();
+  }
+
+  if (DRY_RUN) {
+    console.log(`Dry run — ${planned.length} mutations (nothing written):`);
+    planned.forEach((m) => console.log(`  ${m.op.padEnd(30)} ${m.id}`));
+    return;
+  }
+  await real.commit();
   console.log(
-    `Seeded ${SERIES.length} series, ${ARTWORKS.length} artworks, ${POSTS.length} posts, ${EXHIBITIONS.length} exhibitions, settings.`,
+    ARTWORKS_ONLY
+      ? `Seeded ${SERIES.length} series and ${ARTWORKS.length} artworks; removed legacy placeholders.`
+      : `Seeded ${SERIES.length} series, ${ARTWORKS.length} artworks, ${POSTS.length} posts, ${EXHIBITIONS.length} exhibitions, settings.`,
   );
 }
 

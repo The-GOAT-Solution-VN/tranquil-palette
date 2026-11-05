@@ -49,6 +49,7 @@ Without a Sanity project id the site runs entirely from seed content — fully f
 1. Create a Sanity project + `production` dataset (sanity.io/manage or `npx sanity init`).
 2. Set `NEXT_PUBLIC_SANITY_PROJECT_ID` (and a write token) in `.env.local` / Vercel.
 3. Seed the dataset from the bundled content: `npm run seed` (needs `SANITY_API_WRITE_TOKEN`).
+   - **Already-seeded dataset?** The site reads Sanity first and only falls back to `lib/seed.ts` when the dataset is empty, so changes to the seed file do not appear until the dataset is updated. Use `npm run seed:artworks` to replace only artworks and series (uploads the photos in `public/artworks/`, removes legacy placeholders) without touching site settings, journal or exhibitions. Add `-- --dry-run` to preview the changes without a token.
 4. Generate typed queries: `npm run typegen`.
 5. Add your domains under Sanity **CORS origins**.
 6. Edit content at `/studio`.

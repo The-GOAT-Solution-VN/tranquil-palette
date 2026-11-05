@@ -11,7 +11,8 @@
     "test:e2e:functional": "playwright test --grep-invert visual",
     "test:e2e:update": "playwright test visual --update-snapshots",
     "typegen": "sanity schema extract && sanity typegen generate",
-    "seed": "node --env-file=.env.local scripts/seed.ts"
+    "seed": "node --env-file=.env.local scripts/seed.ts",
+    "seed:artworks": "node --env-file=.env.local scripts/seed.ts --artworks-only"
   },
   "dependencies": {
     "@portabletext/react": "^6.2.0",
