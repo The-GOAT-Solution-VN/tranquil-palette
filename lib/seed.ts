@@ -159,6 +159,16 @@ export const ARTWORKS: SeedArtwork[] = [
     },
     image: { src: "/artworks/happiness.jpg", width: 1166, height: 1800, alt: { en: "Black-and-white painting of a bride and groom walking hand in hand across a city crosswalk", vi: "Tranh đen trắng cô dâu và chú rể nắm tay đi qua vạch kẻ đường giữa phố" } },
   },
+  {
+    id: 22, title: "Peace and Good Health", vi: "An Khang",
+    series: "Landscapes", seriesVi: "Phong Cảnh", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2025, w: 150, h: 120, tone: "gold", available: false,
+    note: {
+      en: "Pale lotus blossoms rise from a still pond in warm golden light, among open seed pods, unfurling leaves and buds. Koi glide below while butterflies and dragonflies hover above, a composition that wishes the viewer peace, health and good fortune. November 2025.",
+      vi: "Những đóa sen trắng hồng vươn lên từ mặt ao tĩnh lặng trong ánh vàng ấm áp, giữa gương sen, lá cuốn và nụ búp. Đàn cá koi lượn dưới nước, bướm và chuồn chuồn chấp chới phía trên, gửi gắm lời chúc bình an, sức khoẻ và may mắn. Tháng 11/2025.",
+    },
+    image: { src: "/artworks/an-khang.jpg", width: 1500, height: 1253, alt: { en: "Painting of white lotus flowers, buds and seed pods over a pond with koi, butterflies and dragonflies, in an ornate gold frame", vi: "Tranh hoa sen trắng, nụ và gương sen trên ao có cá koi, bướm và chuồn chuồn, trong khung vàng chạm hoa văn" } },
+  },
 ];
 
 export const POSTS: SeedPost[] = [
