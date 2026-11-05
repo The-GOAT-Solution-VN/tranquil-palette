@@ -21,7 +21,7 @@ const layoutOptions: { k: Layout; icon: string }[] = [
 function padOf(a: Artwork): string {
   // Prefer the photograph's own proportions so framed works aren't cropped.
   if (a.image?.width && a.image?.height) {
-    return `${Math.min(150, Math.max(75, (a.image.height / a.image.width) * 100))}%`;
+    return `${Math.min(150, Math.max(50, (a.image.height / a.image.width) * 100))}%`;
   }
   if (!a.w || !a.h) return "120%";
   const ratio = (a.h / a.w) * 100;

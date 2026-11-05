@@ -60,6 +60,7 @@ export const SERIES: { key: string; vi: string }[] = [
   { key: "Portraits", vi: "Chân Dung" },
   { key: "Spiritual", vi: "Tâm Linh" },
   { key: "Animals", vi: "Động Vật" },
+  { key: "Landscapes", vi: "Phong Cảnh" },
 ];
 
 export const MEDIUMS: { key: string; vi: string }[] = [
@@ -117,6 +118,46 @@ export const ARTWORKS: SeedArtwork[] = [
       vi: "Một đóa hướng dương hướng về phía ánh sáng, cánh vàng rực và nhụy hoa giàu chất liệu nổi bật trên nền xanh ô-liu mờ sương. Tháng 8/2024.",
     },
     image: { src: "/artworks/sunflower.jpg", width: 1356, height: 1500, alt: { en: "Painting of a golden sunflower with green leaves against a misty olive background", vi: "Tranh hoa hướng dương vàng cùng lá xanh trên nền ô-liu mờ sương" } },
+  },
+  {
+    id: 18, title: "West Lake This Evening", vi: "Hồ Tây Chiều Nay",
+    series: "Landscapes", seriesVi: "Phong Cảnh", medium: "Oil on canvas", mediumVi: "Sơn dầu",
+    year: 2026, w: 40, h: 60, tone: "orange",
+    note: {
+      en: "The sun sinks into a blaze of orange over Hồ Tây, its glow pooling in the still water below the Hanoi skyline. A blossoming flame-tree branch frames the scene from above, a sign of early summer in the city. May 2026.",
+      vi: "Mặt trời lặn trong sắc cam rực rỡ trên Hồ Tây, ánh sáng đổ xuống mặt hồ phẳng lặng bên dưới dải nhà cao tầng Hà Nội. Cành phượng nở hoa vắt ngang từ trên cao như báo hiệu đầu hè. Tháng 5/2026.",
+    },
+    image: { src: "/artworks/west-lake-this-evening.jpg", width: 968, height: 1500, alt: { en: "Oil painting of a vivid orange sunset over West Lake and the Hanoi skyline, framed by a flowering flame-tree branch", vi: "Tranh sơn dầu hoàng hôn cam rực trên Hồ Tây và dải nhà cao tầng Hà Nội, khung bởi cành phượng nở hoa" } },
+  },
+  {
+    id: 19, title: "Happy Cat", vi: "Mèo Hạnh Phúc",
+    series: "Animals", seriesVi: "Động Vật", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2025, w: 80, h: 60, tone: "gold", available: false,
+    note: {
+      en: "A golden tabby stretches in a playful bow, its gaze fixed on a butterfly fluttering above. Two ripe golden fruits rest on the terracotta floor beneath a laden branch, completing this warm, sunlit scene of simple contentment. November 2025.",
+      vi: "Chú mèo vàng vươn mình duỗi dài, ánh mắt dõi theo chú bướm đang chập chờn phía trên. Hai quả vàng chín nằm trên nền gạch đỏ bên dưới cành quả trĩu nặng, tạo nên khung cảnh ấm áp, đầy nắng của niềm vui giản dị. Tháng 11/2025.",
+    },
+    image: { src: "/artworks/happy-cat.jpg", width: 1800, height: 1374, alt: { en: "Painting of a golden tabby cat stretching toward a butterfly beside two ripe golden fruits, in a framed canvas", vi: "Tranh chú mèo vàng vươn mình nhìn chú bướm bên hai quả vàng chín, trong khung tranh" } },
+  },
+  {
+    id: 20, title: "Bronze Buddha", vi: "Đức Phật Tượng Đồng",
+    series: "Spiritual", seriesVi: "Tâm Linh", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2026, w: 62, h: 85, tone: "warm",
+    note: {
+      en: "A close portrait of the Buddha in the manner of an antique bronze statue. Closed eyes and a quiet half-smile convey deep serenity, while burnished gold tones, coiled earlobes and a lotus-like crown of curls glow against a weathered, mottled blue ground. March 2026.",
+      vi: "Chân dung cận cảnh Đức Phật theo dáng tượng đồng cổ. Đôi mắt khép và nụ cười hiền toát lên sự an nhiên sâu lắng; sắc vàng đồng ánh lên cùng đôi tai dài cuộn tròn và búi tóc xoắn hình hoa sen nổi bật trên nền xanh loang màu thời gian. Tháng 3/2026.",
+    },
+    image: { src: "/artworks/bronze-buddha.jpg", width: 1164, height: 1500, alt: { en: "Painting of a golden Buddha's face with closed eyes, styled like a bronze statue, in an ornate frame", vi: "Tranh gương mặt Đức Phật nhắm mắt màu vàng đồng như tượng đồng, trong khung chạm hoa văn" } },
+  },
+  {
+    id: 21, title: "Happiness", vi: "Hạnh Phúc",
+    series: "Portraits", seriesVi: "Chân Dung", medium: "Oil on canvas", mediumVi: "Sơn dầu",
+    year: 2026, w: 40, h: 60, tone: "warm",
+    note: {
+      en: "A bride and groom cross a city street hand in hand, seen from behind, the bride's gown trailing and a bouquet held low at her side. Painted entirely in shades of grey, the crossing's stripes and long shadows lead the eye down the avenue ahead. June 2026.",
+      vi: "Cô dâu và chú rể nắm tay nhau băng qua con phố, nhìn từ phía sau; vạt váy cô dâu thướt tha, bó hoa buông nhẹ bên hông. Bức tranh được vẽ hoàn toàn bằng sắc xám, những vạch kẻ đường và bóng đổ dài dẫn mắt người xem về phía trước. Tháng 6/2026.",
+    },
+    image: { src: "/artworks/happiness.jpg", width: 1166, height: 1800, alt: { en: "Black-and-white painting of a bride and groom walking hand in hand across a city crosswalk", vi: "Tranh đen trắng cô dâu và chú rể nắm tay đi qua vạch kẻ đường giữa phố" } },
   },
 ];
 
