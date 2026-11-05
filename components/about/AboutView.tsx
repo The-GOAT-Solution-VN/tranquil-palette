@@ -3,6 +3,7 @@
 import { useLang } from "@/lib/i18n";
 import { Reveal } from "@/components/motion/Reveal";
 import { ArtworkImage } from "@/components/ArtworkImage";
+import { LoopVideo } from "./LoopVideo";
 import { Eyebrow, PillLink, Frame } from "@/components/ui/Atoms";
 import type { Artwork, SiteContent } from "@/lib/types";
 
@@ -32,7 +33,14 @@ export function AboutView({
         <div className="tp-grid-2" style={{ maxWidth: 1180, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(28px,4vw,72px)", alignItems: "start" }}>
           <Reveal style={{ position: "sticky", top: 100 }}>
             <Frame pad={14}>
-              <ArtworkImage image={site.portrait} tone="warm" paddingTop="122%" alt={t.portraitTag} sizes="(max-width:768px) 100vw, 45vw" />
+              <div style={{ position: "relative", width: "100%", paddingTop: "122%", background: "#E9E4D4", overflow: "hidden" }}>
+                <LoopVideo
+                  mp4="/video/artist-loop.mp4"
+                  webm="/video/artist-loop.webm"
+                  poster="/video/artist-poster.jpg"
+                  label={t.portraitTag}
+                />
+              </div>
             </Frame>
             <span style={{ display: "block", marginTop: 14, fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", color: "#6f6f64", textAlign: "center" }}>{t.portraitTag}</span>
           </Reveal>
