@@ -14,7 +14,7 @@ const footerNav = [
 ] as const;
 
 export function Footer() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
 
@@ -162,7 +162,7 @@ export function Footer() {
             gap: 12,
           }}
         >
-          <span>© {new Date().getFullYear()} Tranquil Palette · Kim Pham</span>
+          <span>© {new Date().getFullYear()} Tranquil Palette · {lang === "VI" ? "Phạm Hương" : "Kim Pham"}</span>
           <span>Hanoi, Vietnam</span>
         </div>
       </div>

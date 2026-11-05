@@ -286,7 +286,7 @@ export const STATS: { value: string; label: Locale }[] = [
 ];
 
 export const VISIT_INFO: { label: Locale; value: Locale }[] = [
-  { label: { en: "Address", vi: "Địa chỉ" }, value: { en: "A quiet lane in Tây Hồ\nHanoi, Vietnam", vi: "Một con ngõ yên tĩnh ở Tây Hồ\nHà Nội, Việt Nam" } },
+  { label: { en: "Address", vi: "Địa chỉ" }, value: { en: "6 Nam Hong Street, Thanh Xuan Ward\nHanoi, Vietnam", vi: "6 Nam Hồng, phường Thanh Xuân\nHà Nội, Việt Nam" } },
   { label: { en: "Hours", vi: "Giờ" }, value: { en: "By appointment\nMost afternoons", vi: "Theo hẹn\nThường vào buổi chiều" } },
   { label: { en: "Email", vi: "Email" }, value: { en: "hello@tranquilpalette.art", vi: "hello@tranquilpalette.art" } },
   { label: { en: "Phone", vi: "Điện thoại" }, value: { en: "+84 24 1234 5678", vi: "+84 24 1234 5678" } },
