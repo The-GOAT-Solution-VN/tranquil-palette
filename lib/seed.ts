@@ -220,6 +220,46 @@ export const ARTWORKS: SeedArtwork[] = [
     },
     image: { src: "/artworks/violet-dusk.jpg", width: 1000, height: 1500, alt: { en: "Painting of a woman with long copper-red hair in a violet gown walking through a field of purple flowers toward a glowing sunset", vi: "Tranh thiếu nữ tóc đỏ đồng dài, váy tím, bước đi giữa cánh đồng hoa tím hướng về mặt trời lặn rực sáng" } },
   },
+  {
+    id: 28, title: "Far Out to Sea", vi: "Xa Khơi",
+    series: "Landscapes", seriesVi: "Phong Cảnh", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2024, w: 50, h: 60, tone: "orange", available: false,
+    note: {
+      en: "A tall ship under full sail drives through heavy swells toward a blazing sunset, spray bursting from its bow as the sea rolls past in glassy green and white-capped crests. Fiery oranges and violets crowd the sky above, and the low sun scatters gold across the water. September 2024.",
+      vi: "Con thuyền buồm lớn căng gió lao qua những con sóng cuộn, bọt nước tung trắng xoá dưới mũi tàu, hướng về hoàng hôn rực lửa. Bầu trời nhuộm cam và tím, mặt trời thấp rải ánh vàng lên mặt biển xanh ngọc. Tháng 9/2024.",
+    },
+    image: { src: "/artworks/far-out-to-sea.jpg", width: 1130, height: 1500, alt: { en: "Painting of a three-masted sailing ship cresting a wave under a fiery orange and violet sunset sky", vi: "Tranh con thuyền buồm ba cột vượt sóng dưới bầu trời hoàng hôn cam và tím rực lửa" } },
+  },
+  {
+    id: 29, title: "Tu San Canyon, Nho Quế River", vi: "Hẻm Tu Sản, Sông Nho Quế",
+    series: "Landscapes", seriesVi: "Phong Cảnh", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2025, w: 35, h: 55, tone: "green",
+    note: {
+      en: "A young couple sit close at the bow of a boat, gazing along the emerald Nho Quế River as it winds between the towering limestone walls of Tu San Canyon in Hà Giang. A small boat ahead trails a silver wake toward distant, sunlit peaks. February 2025.",
+      vi: "Đôi trẻ ngồi sát bên nhau ở mũi thuyền, ngắm dòng sông Nho Quế xanh ngọc uốn quanh vách đá vôi sừng sững của hẻm Tu Sản, Hà Giang. Phía trước, một chiếc thuyền nhỏ để lại vệt nước bạc hướng về những đỉnh núi xa đầy nắng. Tháng 2/2025.",
+    },
+    image: { src: "/artworks/tu-san-canyon.jpg", width: 1230, height: 1500, alt: { en: "Painting of a couple seated at a boat's bow looking down an emerald river between tall limestone cliffs, in a cream and gold frame", vi: "Tranh đôi trẻ ngồi ở mũi thuyền nhìn dòng sông xanh ngọc giữa vách đá vôi cao, trong khung kem và vàng" } },
+  },
+  {
+    id: 30, title: "Dance of the Plum Blossoms", vi: "Vũ Điệu Hoa Mận",
+    series: "Portraits", seriesVi: "Chân Dung", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2025, w: 60, h: 80, tone: "sage",
+    note: {
+      en: "A dancer in a flowing white dress, an embroidered sash and a red ribbon headband lifts her arms among orchards of plum blossom, petals drifting like snow around her. Misty violet mountains rise behind a meadow bright with spring grass. February 2025.",
+      vi: "Một thiếu nữ trong tà váy trắng thướt tha, thắt lưng thêu và dải băng đỏ trên đầu giơ tay múa giữa vườn hoa mận, cánh hoa bay như tuyết quanh mình. Những dãy núi tím mờ sương nâng phía sau thảm cỏ xuân tươi sáng. Tháng 2/2025.",
+    },
+    image: { src: "/artworks/dance-of-the-plum-blossoms.jpg", width: 1108, height: 1500, alt: { en: "Painting of a dancer in a white dress with arms raised among white plum blossom trees, with misty mountains behind", vi: "Tranh thiếu nữ váy trắng giơ tay múa giữa những cây hoa mận trắng, núi mờ sương phía sau" } },
+  },
+  {
+    id: 31, title: "Amitabha Buddha", vi: "Đức Phật A Di Đà",
+    series: "Spiritual", seriesVi: "Tâm Linh", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2025, w: 90, h: 120, tone: "warm", available: false,
+    note: {
+      en: "The Buddha's serene face emerges in luminous teal, amber and orange from a deep, dark ground, eyes lowered in meditation. Worked in thick palette-knife relief, the tiled strokes of the background and the gold-flecked curls of the crown catch the light. July 2025.",
+      vi: "Gương mặt Đức Phật an nhiên hiện lên trong sắc lục lam, hổ phách và cam rực từ nền tối sâu thẳm, đôi mắt khép trong thiền định. Tranh được đắp nổi dày bằng dao bay; những mảng màu lát ngói ở nền và búi tóc ánh vàng đón sáng. Tháng 7/2025.",
+    },
+    image: { src: "/artworks/amitabha-buddha.jpg", width: 1108, height: 1500, alt: { en: "Textured palette-knife painting of the Buddha's face in teal, amber and orange against a dark tiled background", vi: "Tranh đắp nổi bằng dao bay gương mặt Đức Phật sắc lục lam, hổ phách và cam trên nền tối lát ngói" } },
+  },
 ];
 
 export const POSTS: SeedPost[] = [
