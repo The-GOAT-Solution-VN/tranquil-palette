@@ -5,6 +5,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { ArtworkImage } from "@/components/ArtworkImage";
 import { Eyebrow } from "@/components/ui/Atoms";
 import type { Exhibition } from "@/lib/types";
+import { exhibitionPadding } from "@/lib/image";
 
 export function ExhibitionsView({ exhibitions }: { exhibitions: Exhibition[] }) {
   const { t, loc } = useLang();
@@ -27,7 +28,7 @@ export function ExhibitionsView({ exhibitions }: { exhibitions: Exhibition[] }) 
               <Reveal key={e.slug}>
                 <article className="tp-card tp-grid-2" style={{ display: "grid", gridTemplateColumns: "0.42fr 0.58fr", gap: "clamp(24px,3.5vw,56px)", alignItems: "center", padding: "clamp(26px,4vh,46px) 0", borderTop: "1px solid rgba(44,44,40,0.12)", cursor: "pointer" }}>
                   <div style={{ overflow: "hidden", borderRadius: 2 }}>
-                    <ArtworkImage image={e.image} tone={e.tone} paddingTop="66%" alt={loc(e.name) ?? "Exhibition"} zoom sizes="(max-width:768px) 100vw, 42vw" />
+                    <ArtworkImage image={e.image} tone={e.tone} paddingTop={exhibitionPadding(e.image)} alt={loc(e.name) ?? "Exhibition"} zoom sizes="(max-width:768px) 100vw, 42vw" />
                   </div>
                   <div>
                     <div style={{ display: "inline-block", fontSize: 10.5, letterSpacing: "0.18em", textTransform: "uppercase", color, border: `1px solid ${color}`, padding: "5px 12px", borderRadius: 999, marginBottom: 18 }}>{loc(e.status)}</div>

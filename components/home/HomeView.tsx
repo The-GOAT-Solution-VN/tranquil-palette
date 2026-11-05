@@ -7,6 +7,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { Parallax } from "@/components/motion/Parallax";
 import { ArtworkImage } from "@/components/ArtworkImage";
 import { LoopVideo } from "@/components/about/LoopVideo";
+import { exhibitionPadding, isPortrait } from "@/lib/image";
 import { Eyebrow, PillLink, TextLink, Frame } from "@/components/ui/Atoms";
 import type { Artwork, Exhibition, Post, SiteContent } from "@/lib/types";
 
@@ -178,9 +179,11 @@ export function HomeView({
             </Reveal>
             <div className="tp-grid-2" style={{ display: "grid", gridTemplateColumns: "1.15fr 0.85fr", gap: "clamp(24px,3.5vw,60px)", alignItems: "center" }}>
               <Reveal>
-                <Frame pad={14}>
-                  <ArtworkImage image={exhibition.image} tone={exhibition.tone} paddingTop="64%" alt={loc(exhibition.name) ?? "Exhibition"} sizes="(max-width:768px) 100vw, 55vw" />
-                </Frame>
+                <div style={isPortrait(exhibition.image) ? { maxWidth: 380, margin: "0 auto" } : undefined}>
+                  <Frame pad={14}>
+                    <ArtworkImage image={exhibition.image} tone={exhibition.tone} paddingTop={exhibitionPadding(exhibition.image, "64%")} alt={loc(exhibition.name) ?? "Exhibition"} sizes="(max-width:768px) 100vw, 55vw" />
+                  </Frame>
+                </div>
               </Reveal>
               <Reveal>
                 <div style={{ display: "inline-block", fontSize: 11, fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase", color: "#27271f", background: "#F47F15", padding: "7px 15px", borderRadius: 999, marginBottom: 20 }}>{t.exBadge}</div>
