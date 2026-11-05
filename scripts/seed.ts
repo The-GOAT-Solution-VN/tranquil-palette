@@ -49,7 +49,14 @@ const client = createClient({
 });
 
 const slugify = (s: string) =>
-  s.toLowerCase().replace(/['’]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  s
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "") // strip accents: ế → e
+    .replace(/đ/gi, "d")
+    .toLowerCase()
+    .replace(/['’]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
 
 const mediumLookup = Object.fromEntries(MEDIUMS.map((m) => [m.key, m.vi]));
 
