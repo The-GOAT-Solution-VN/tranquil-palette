@@ -131,7 +131,7 @@ export function HomeView({
             <h2 style={sectionTitle}>{t.featTitle}</h2>
           </Reveal>
           <div className="tp-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "clamp(20px,2.5vw,44px)" }}>
-            {featured.slice(0, 3).map((a, i) => (
+            {featured.slice(2, 5).map((a, i) => (
               <Reveal key={a.id} delay={(i % 3) * 90}>
                 <Link href={`/gallery?art=${encodeURIComponent(a.slug)}`} className="tp-card" style={{ textAlign: "left", textDecoration: "none", cursor: "zoom-in", display: "block" }}>
                   <Frame pad={10}>

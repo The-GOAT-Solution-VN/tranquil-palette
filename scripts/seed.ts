@@ -152,7 +152,7 @@ async function run() {
       _type: "exhibition",
       name: e.name,
       slug: { _type: "slug", current: e.slug },
-      status: e.up ? (i === 1 ? "current" : "upcoming") : "past",
+      status: e.status.en === "On now" ? "current" : e.up ? "upcoming" : "past",
       statusLabel: e.status,
       dates: e.dates,
       place: e.place,
