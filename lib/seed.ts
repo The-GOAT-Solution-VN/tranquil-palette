@@ -56,10 +56,8 @@ export interface SeedExhibition {
 }
 
 export const SERIES: { key: string; vi: string }[] = [
-  { key: "Hanoi Streets", vi: "Phố Cổ" },
   { key: "Still Life", vi: "Tĩnh Vật" },
   { key: "Portraits", vi: "Chân Dung" },
-  { key: "Landscapes", vi: "Phong Cảnh" },
   { key: "Spiritual", vi: "Tâm Linh" },
   { key: "Animals", vi: "Động Vật" },
 ];
@@ -70,7 +68,6 @@ export const MEDIUMS: { key: string; vi: string }[] = [
 ];
 
 export const ARTWORKS: SeedArtwork[] = [
-  // --- Photographed works (ids 13–17), shown first ---------------------------
   {
     id: 13, title: "The Fragrant Family Garden", vi: "Vườn Nhà Thơm",
     series: "Portraits", seriesVi: "Chân Dung", medium: "Acrylic on canvas", mediumVi: "Acrylic",
@@ -121,20 +118,6 @@ export const ARTWORKS: SeedArtwork[] = [
     },
     image: { src: "/artworks/sunflower.jpg", width: 1356, height: 1500, alt: { en: "Painting of a golden sunflower with green leaves against a misty olive background", vi: "Tranh hoa hướng dương vàng cùng lá xanh trên nền ô-liu mờ sương" } },
   },
-
-  // --- Original design content (no photograph yet) ----------------------------
-  { id: 1, title: "Summer Lotus", vi: "Sen Mùa Hạ", series: "Still Life", seriesVi: "Tĩnh Vật", medium: "Oil on canvas", mediumVi: "Sơn dầu", year: 2024, w: 80, h: 100, tone: "sage", featured: true, note: { en: "Lotus blooms gathered from the lake near her home, painted in the soft light of a Hanoi morning.", vi: "Những bông sen hái từ hồ gần nhà, vẽ trong ánh sáng dịu của một buổi sáng Hà Nội." } },
-  { id: 2, title: "Old Quarter Morning", vi: "Phố Cổ Buổi Sáng", series: "Hanoi Streets", seriesVi: "Phố Cổ", medium: "Acrylic on canvas", mediumVi: "Acrylic", year: 2023, w: 90, h: 60, tone: "peach", featured: true, note: { en: "The narrow streets of the Old Quarter as vendors set out their wares and the city slowly wakes.", vi: "Những con phố hẹp của Phố Cổ khi người bán dọn hàng và thành phố từ từ thức giấc." } },
-  { id: 3, title: "My Grandmother", vi: "Bà Tôi", series: "Portraits", seriesVi: "Chân Dung", medium: "Oil on canvas", mediumVi: "Sơn dầu", year: 2022, w: 60, h: 80, tone: "warm", featured: true, note: { en: "A tender portrait drawn from memory — the quiet dignity of an elder who shaped a family.", vi: "Một bức chân dung dịu dàng vẽ từ ký ức — sự đường hoàng lặng lẽ của người bà đã dựng nên một gia đình." } },
-  { id: 4, title: "Sword Lake in October", vi: "Hồ Gươm Tháng Mười", series: "Landscapes", seriesVi: "Phong Cảnh", medium: "Oil on canvas", mediumVi: "Sơn dầu", year: 2024, w: 100, h: 70, tone: "green", note: { en: "Hoàn Kiếm Lake in autumn, its still water holding the amber of changing leaves.", vi: "Hồ Hoàn Kiếm vào thu, mặt nước tĩnh lặng giữ lấy sắc hổ phách của lá mùa." } },
-  { id: 5, title: "The Flower Vendor", vi: "Gánh Hàng Hoa", series: "Hanoi Streets", seriesVi: "Phố Cổ", medium: "Acrylic on canvas", mediumVi: "Acrylic", year: 2023, w: 70, h: 90, tone: "gold", note: { en: "A bicycle laden with seasonal blooms — a moving garden through the streets of Hanoi.", vi: "Chiếc xe đạp chở đầy hoa theo mùa — một khu vườn di động qua những con phố Hà Nội." } },
-  { id: 6, title: "Still Life with Oranges", vi: "Tĩnh Vật Với Cam", series: "Still Life", seriesVi: "Tĩnh Vật", medium: "Oil on canvas", mediumVi: "Sơn dầu", year: 2021, w: 60, h: 60, tone: "orange", note: { en: "An early study of light and warmth, painted shortly after she first picked up the brush.", vi: "Một nghiên cứu sớm về ánh sáng và hơi ấm, vẽ ngay sau khi bà lần đầu cầm cọ." } },
-  { id: 7, title: "West Lake Afternoon", vi: "Chiều Tây Hồ", series: "Landscapes", seriesVi: "Phong Cảnh", medium: "Acrylic on canvas", mediumVi: "Acrylic", year: 2024, w: 120, h: 80, tone: "sage", note: { en: "The wide calm of Hồ Tây in late afternoon, where the city softens into water and sky.", vi: "Sự tĩnh lặng mênh mông của Hồ Tây buổi chiều muộn, nơi thành phố tan vào nước và trời." } },
-  { id: 8, title: "Girl in Áo Dài", vi: "Cô Gái Áo Dài", series: "Portraits", seriesVi: "Chân Dung", medium: "Oil on canvas", mediumVi: "Sơn dầu", year: 2023, w: 70, h: 100, tone: "peach", note: { en: "A young woman in the traditional áo dài, captured in a moment of quiet poise.", vi: "Một thiếu nữ trong tà áo dài truyền thống, được ghi lại trong khoảnh khắc thanh thản." } },
-  { id: 9, title: "Green Rice Season", vi: "Mùa Cốm", series: "Still Life", seriesVi: "Tĩnh Vật", medium: "Oil on canvas", mediumVi: "Sơn dầu", year: 2022, w: 80, h: 80, tone: "green", note: { en: "Young green rice wrapped in lotus leaf — a fleeting autumn delicacy and a memory of place.", vi: "Cốm non gói trong lá sen — một thức quà thu thoáng qua và một ký ức về chốn cũ." } },
-  { id: 10, title: "Little Alley", vi: "Ngõ Nhỏ", series: "Hanoi Streets", seriesVi: "Phố Cổ", medium: "Acrylic on canvas", mediumVi: "Acrylic", year: 2024, w: 60, h: 90, tone: "gold", note: { en: "A sliver of light down a hidden alley, where life unfolds in close and gentle quarters.", vi: "Một vệt sáng trong con ngõ khuất, nơi cuộc sống diễn ra trong những góc nhỏ thân tình." } },
-  { id: 11, title: "Morning Mist", vi: "Sương Sớm", series: "Landscapes", seriesVi: "Phong Cảnh", medium: "Oil on canvas", mediumVi: "Sơn dầu", year: 2023, w: 100, h: 80, tone: "sage", note: { en: "Mist settling over the fields outside the city, painted in restrained, breathing greys.", vi: "Sương phủ trên những cánh đồng ngoại ô, vẽ bằng những sắc xám tiết chế, đang thở." } },
-  { id: 12, title: "Lily Season", vi: "Hoa Loa Kèn", series: "Still Life", seriesVi: "Tĩnh Vật", medium: "Oil on canvas", mediumVi: "Sơn dầu", year: 2024, w: 70, h: 90, tone: "peach", note: { en: "White lilies mark April in Hanoi — a brief, luminous season she returns to each year.", vi: "Hoa loa kèn trắng đánh dấu tháng Tư ở Hà Nội — một mùa ngắn ngủi, rạng rỡ bà trở lại mỗi năm." } },
 ];
 
 export const POSTS: SeedPost[] = [

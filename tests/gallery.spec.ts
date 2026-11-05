@@ -4,19 +4,19 @@ test.describe("gallery — filters, layouts, lightbox", () => {
   test("series filter narrows the set and updates the count", async ({ page }) => {
     await page.goto("/gallery");
     const count = page.getByTestId("gal-count");
-    await expect(count).toContainText("17");
+    await expect(count).toContainText("5");
 
     await page.getByRole("button", { name: "Portraits", exact: true }).click();
-    await expect(count).toContainText("3");
+    await expect(count).toContainText("1");
     const cards = page.locator('[data-testid="gal-container"] button.tp-card');
-    await expect(cards).toHaveCount(3);
+    await expect(cards).toHaveCount(1);
   });
 
   test("medium filter works", async ({ page }) => {
     await page.goto("/gallery");
     await page.getByRole("button", { name: "Acrylic", exact: true }).click();
     const cards = page.locator('[data-testid="gal-container"] button.tp-card');
-    await expect(cards).toHaveCount(9);
+    await expect(cards).toHaveCount(5);
   });
 
   test("layout switch changes the container layout", async ({ page }) => {

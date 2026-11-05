@@ -1,6 +1,6 @@
 # Tranquil Palette
 
-A bilingual (EN / VI) home-gallery website for the Hanoi painter **Huong Pham**, rebuilt from the original design as a production Next.js app with a Sanity CMS.
+A bilingual (EN / VI) home-gallery website for the Hanoi painter **Kim Pham**, rebuilt from the original design as a production Next.js app with a Sanity CMS.
 
 - **Framework:** Next.js 16 (App Router, React 19, TypeScript)
 - **CMS:** Sanity v3 (embedded Studio at `/studio`)
