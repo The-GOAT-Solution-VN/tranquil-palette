@@ -24,8 +24,9 @@ export interface SeedArtwork {
   medium: string; // English medium
   mediumVi: string;
   year: number;
-  w: number;
-  h: number;
+  /** Size in cm; omit when not recorded. */
+  w?: number;
+  h?: number;
   tone: Tone;
   note: Locale;
   featured?: boolean;
@@ -60,6 +61,7 @@ export const SERIES: { key: string; vi: string }[] = [
   { key: "Portraits", vi: "Chân Dung" },
   { key: "Spiritual", vi: "Tâm Linh" },
   { key: "Animals", vi: "Động Vật" },
+  { key: "Landscapes", vi: "Phong Cảnh" },
 ];
 
 export const MEDIUMS: { key: string; vi: string }[] = [
@@ -117,6 +119,146 @@ export const ARTWORKS: SeedArtwork[] = [
       vi: "Một đóa hướng dương hướng về phía ánh sáng, cánh vàng rực và nhụy hoa giàu chất liệu nổi bật trên nền xanh ô-liu mờ sương. Tháng 8/2024.",
     },
     image: { src: "/artworks/sunflower.jpg", width: 1356, height: 1500, alt: { en: "Painting of a golden sunflower with green leaves against a misty olive background", vi: "Tranh hoa hướng dương vàng cùng lá xanh trên nền ô-liu mờ sương" } },
+  },
+  {
+    id: 18, title: "West Lake This Evening", vi: "Hồ Tây Chiều Nay",
+    series: "Landscapes", seriesVi: "Phong Cảnh", medium: "Oil on canvas", mediumVi: "Sơn dầu",
+    year: 2026, w: 40, h: 60, tone: "orange",
+    note: {
+      en: "The sun sinks into a blaze of orange over Hồ Tây, its glow pooling in the still water below the Hanoi skyline. A blossoming flame-tree branch frames the scene from above, a sign of early summer in the city. May 2026.",
+      vi: "Mặt trời lặn trong sắc cam rực rỡ trên Hồ Tây, ánh sáng đổ xuống mặt hồ phẳng lặng bên dưới dải nhà cao tầng Hà Nội. Cành phượng nở hoa vắt ngang từ trên cao như báo hiệu đầu hè. Tháng 5/2026.",
+    },
+    image: { src: "/artworks/west-lake-this-evening.jpg", width: 968, height: 1500, alt: { en: "Oil painting of a vivid orange sunset over West Lake and the Hanoi skyline, framed by a flowering flame-tree branch", vi: "Tranh sơn dầu hoàng hôn cam rực trên Hồ Tây và dải nhà cao tầng Hà Nội, khung bởi cành phượng nở hoa" } },
+  },
+  {
+    id: 19, title: "Happy Cat", vi: "Mèo Hạnh Phúc",
+    series: "Animals", seriesVi: "Động Vật", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2025, w: 80, h: 60, tone: "gold", available: false,
+    note: {
+      en: "A golden tabby stretches in a playful bow, its gaze fixed on a butterfly fluttering above. Two ripe golden fruits rest on the terracotta floor beneath a laden branch, completing this warm, sunlit scene of simple contentment. November 2025.",
+      vi: "Chú mèo vàng vươn mình duỗi dài, ánh mắt dõi theo chú bướm đang chập chờn phía trên. Hai quả vàng chín nằm trên nền gạch đỏ bên dưới cành quả trĩu nặng, tạo nên khung cảnh ấm áp, đầy nắng của niềm vui giản dị. Tháng 11/2025.",
+    },
+    image: { src: "/artworks/happy-cat.jpg", width: 1800, height: 1374, alt: { en: "Painting of a golden tabby cat stretching toward a butterfly beside two ripe golden fruits, in a framed canvas", vi: "Tranh chú mèo vàng vươn mình nhìn chú bướm bên hai quả vàng chín, trong khung tranh" } },
+  },
+  {
+    id: 20, title: "Bronze Buddha", vi: "Đức Phật Tượng Đồng",
+    series: "Spiritual", seriesVi: "Tâm Linh", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2026, w: 62, h: 85, tone: "warm",
+    note: {
+      en: "A close portrait of the Buddha in the manner of an antique bronze statue. Closed eyes and a quiet half-smile convey deep serenity, while burnished gold tones, coiled earlobes and a lotus-like crown of curls glow against a weathered, mottled blue ground. March 2026.",
+      vi: "Chân dung cận cảnh Đức Phật theo dáng tượng đồng cổ. Đôi mắt khép và nụ cười hiền toát lên sự an nhiên sâu lắng; sắc vàng đồng ánh lên cùng đôi tai dài cuộn tròn và búi tóc xoắn hình hoa sen nổi bật trên nền xanh loang màu thời gian. Tháng 3/2026.",
+    },
+    image: { src: "/artworks/bronze-buddha.jpg", width: 1164, height: 1500, alt: { en: "Painting of a golden Buddha's face with closed eyes, styled like a bronze statue, in an ornate frame", vi: "Tranh gương mặt Đức Phật nhắm mắt màu vàng đồng như tượng đồng, trong khung chạm hoa văn" } },
+  },
+  {
+    id: 21, title: "Happiness 🇻🇳🇺🇸", vi: "Hạnh Phúc 🇻🇳🇺🇸",
+    series: "Portraits", seriesVi: "Chân Dung", medium: "Oil on canvas", mediumVi: "Sơn dầu",
+    year: 2026, w: 40, h: 60, tone: "warm",
+    note: {
+      en: "A bride and groom cross a city street hand in hand, seen from behind, the bride's gown trailing and a bouquet held low at her side. Painted entirely in shades of grey, the crossing's stripes and long shadows lead the eye down the avenue ahead. Titled with the flags of Vietnam and the United States, it celebrates a union between two cultures. June 2026.",
+      vi: "Cô dâu và chú rể nắm tay nhau băng qua con phố, nhìn từ phía sau; vạt váy cô dâu thướt tha, bó hoa buông nhẹ bên hông. Bức tranh được vẽ hoàn toàn bằng sắc xám, những vạch kẻ đường và bóng đổ dài dẫn mắt người xem về phía trước. Tên tranh kèm hai lá cờ Việt Nam và Hoa Kỳ, ngợi ca sự gắn kết của hai nền văn hoá. Tháng 6/2026.",
+    },
+    image: { src: "/artworks/happiness.jpg", width: 1166, height: 1800, alt: { en: "Black-and-white painting of a bride and groom walking hand in hand across a city crosswalk", vi: "Tranh đen trắng cô dâu và chú rể nắm tay đi qua vạch kẻ đường giữa phố" } },
+  },
+  {
+    id: 22, title: "Peace and Good Health", vi: "An Khang",
+    series: "Landscapes", seriesVi: "Phong Cảnh", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2025, w: 150, h: 120, tone: "gold", available: false,
+    note: {
+      en: "Pale lotus blossoms rise from a still pond in warm golden light, among open seed pods, unfurling leaves and buds. Koi glide below while butterflies and dragonflies hover above, a composition that wishes the viewer peace, health and good fortune. November 2025.",
+      vi: "Những đóa sen trắng hồng vươn lên từ mặt ao tĩnh lặng trong ánh vàng ấm áp, giữa gương sen, lá cuốn và nụ búp. Đàn cá koi lượn dưới nước, bướm và chuồn chuồn chấp chới phía trên, gửi gắm lời chúc bình an, sức khoẻ và may mắn. Tháng 11/2025.",
+    },
+    image: { src: "/artworks/an-khang.jpg", width: 1500, height: 1253, alt: { en: "Painting of white lotus flowers, buds and seed pods over a pond with koi, butterflies and dragonflies, in an ornate gold frame", vi: "Tranh hoa sen trắng, nụ và gương sen trên ao có cá koi, bướm và chuồn chuồn, trong khung vàng chạm hoa văn" } },
+  },
+  {
+    id: 23, title: "The Rooster", vi: "Con Gà Trống",
+    series: "Animals", seriesVi: "Động Vật", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2024, w: 40, h: 50, tone: "orange",
+    note: {
+      en: "A proud rooster stands tall in full plumage, with flame-orange hackles, a deep blue-black body and a sweeping tail, set against a glowing meadow flecked with small yellow flowers. August 2024.",
+      vi: "Chú gà trống đứng hiên ngang trong bộ lông rực rỡ, cổ cam lửa, thân xanh đen thẫm, đuôi cong vút, trên nền đồng cỏ lung linh điểm những bông hoa vàng nhỏ. Tháng 8/2024.",
+    },
+    image: { src: "/artworks/the-rooster.jpg", width: 1310, height: 1800, alt: { en: "Painting of a rooster with orange and blue-black plumage and a red comb, standing before a glowing meadow, in a dark wood frame", vi: "Tranh chú gà trống lông cam và xanh đen, mào đỏ, đứng trước đồng cỏ lung linh, trong khung gỗ sẫm" } },
+  },
+  {
+    id: 24, title: "Auckland Dusk", vi: "Chiều Auckland",
+    series: "Landscapes", seriesVi: "Phong Cảnh", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2025, w: 62, h: 82, tone: "orange", available: false,
+    note: {
+      en: "A street runs straight toward the setting sun between towering buildings, with a construction crane and traffic lights glowing red in the dusk. The Sky Tower rises beyond bare branches as birds wheel overhead, and saturated oranges, magentas and violets turn Auckland's dusk into a vision of fire. September 2025.",
+      vi: "Con đường thẳng tắp hướng về mặt trời lặn giữa những toà nhà cao tầng; cần cẩu và đèn giao thông đỏ rực trong hoàng hôn. Tháp Sky Tower nhô lên sau những cành cây trơ lá, đàn chim sải cánh trên cao; những sắc cam, tím và hồng sẫm rực lửa biến buổi chiều Auckland thành một thị kiến cháy bỏng. Tháng 9/2025.",
+    },
+    image: { src: "/artworks/auckland-evening.jpg", width: 1219, height: 1800, alt: { en: "Painting of an Auckland street at sunset in fiery oranges and violets, with the Sky Tower, a crane and traffic lights", vi: "Tranh con phố Auckland lúc hoàng hôn với sắc cam và tím rực lửa, có tháp Sky Tower, cần cẩu và đèn giao thông" } },
+  },
+  {
+    id: 25, title: "Golden Season", vi: "Mùa Vàng",
+    series: "Landscapes", seriesVi: "Phong Cảnh", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2025, w: 240, h: 135, tone: "gold", available: false,
+    note: {
+      en: "A golden harvest spreads to the horizon, a winding canal carrying ducks and water lilies through ripe rice fields. In the foreground, young women in traditional dress pause beneath a tree beside sheaves of rice and woven baskets, while farmers work the distant paddies under a sun-washed sky. August 2025.",
+      vi: "Mùa gặt vàng trải dài đến tận chân trời, dòng kênh uốn lượn đưa vịt và hoa súng qua những thửa ruộng lúa chín. Phía trước, các thiếu nữ trong trang phục truyền thống nghỉ chân dưới gốc cây bên những bó lúa và chiếc giỏ đan; xa xa, người nông dân vẫn miệt mài trên đồng dưới bầu trời đầy nắng. Tháng 8/2025.",
+    },
+    image: { src: "/artworks/golden-season.jpg", width: 1800, height: 1057, alt: { en: "Wide painting of golden rice fields with a winding canal, ducks and young women in traditional dress resting under a tree", vi: "Tranh toàn cảnh cánh đồng lúa vàng với dòng kênh uốn lượn, đàn vịt và các thiếu nữ trong trang phục truyền thống nghỉ dưới gốc cây" } },
+  },
+  {
+    id: 26, title: "April's Arrived", vi: "Tháng Tư Về",
+    series: "Portraits", seriesVi: "Chân Dung", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2026, w: 60, h: 80, tone: "peach",
+    note: {
+      en: "A woman in a vivid red áo dài sits at an upright piano, glancing down at an armful of white lilies, the flower that heralds April in Hanoi. The dress is built from bold, blocky strokes of red, orange and pink in a patchwork style, set against a hazy golden ground. May 2026.",
+      vi: "Một thiếu nữ trong tà áo dài đỏ rực ngồi bên cây đàn piano, cúi nhìn bó hoa loa kèn trắng, loài hoa báo hiệu tháng Tư Hà Nội. Tà áo được vẽ bằng những mảng màu đỏ, cam, hồng táo bạo theo phong cách mảng miếng trên nền vàng mờ ảo. Tháng 5/2026.",
+    },
+    image: { src: "/artworks/april-returns.jpg", width: 1337, height: 1800, alt: { en: "Painting of a woman in a red áo dài seated at a piano, holding white lilies, in blocky patchwork brushwork", vi: "Tranh thiếu nữ áo dài đỏ ngồi bên đàn piano, cầm hoa loa kèn trắng, vẽ theo phong cách mảng miếng" } },
+  },
+  {
+    id: 27, title: "Violet Dusk", vi: "Hoàng Hôn Tím",
+    series: "Portraits", seriesVi: "Chân Dung", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2026, tone: "sage",
+    note: {
+      en: "A woman with flowing copper-red hair walks away through a vast field of violet blossoms, her sapphire gown swirling around her, toward a low sun glowing on the horizon. The whole scene is bathed in twilight purples, with tiny points of light scattered like fireflies. 2026.",
+      vi: "Một thiếu nữ với mái tóc đỏ đồng xoã dài bước đi giữa cánh đồng hoa tím bát ngát, tà váy xanh tím thướt tha, hướng về mặt trời thấp đang toả sáng nơi chân trời. Cả khung cảnh chìm trong sắc tím hoàng hôn, điểm xuyết những đốm sáng li ti như đom đóm. Năm 2026.",
+    },
+    image: { src: "/artworks/violet-dusk.jpg", width: 1000, height: 1500, alt: { en: "Painting of a woman with long copper-red hair in a violet gown walking through a field of purple flowers toward a glowing sunset", vi: "Tranh thiếu nữ tóc đỏ đồng dài, váy tím, bước đi giữa cánh đồng hoa tím hướng về mặt trời lặn rực sáng" } },
+  },
+  {
+    id: 28, title: "Far Out to Sea", vi: "Xa Khơi",
+    series: "Landscapes", seriesVi: "Phong Cảnh", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2024, w: 50, h: 60, tone: "orange", available: false,
+    note: {
+      en: "A tall ship under full sail drives through heavy swells toward a blazing sunset, spray bursting from its bow as the sea rolls past in glassy green and white-capped crests. Fiery oranges and violets crowd the sky above, and the low sun scatters gold across the water. September 2024.",
+      vi: "Con thuyền buồm lớn căng gió lao qua những con sóng cuộn, bọt nước tung trắng xoá dưới mũi tàu, hướng về hoàng hôn rực lửa. Bầu trời nhuộm cam và tím, mặt trời thấp rải ánh vàng lên mặt biển xanh ngọc. Tháng 9/2024.",
+    },
+    image: { src: "/artworks/far-out-to-sea.jpg", width: 1130, height: 1500, alt: { en: "Painting of a three-masted sailing ship cresting a wave under a fiery orange and violet sunset sky", vi: "Tranh con thuyền buồm ba cột vượt sóng dưới bầu trời hoàng hôn cam và tím rực lửa" } },
+  },
+  {
+    id: 29, title: "Tu San Canyon, Nho Quế River", vi: "Hẻm Tu Sản, Sông Nho Quế",
+    series: "Landscapes", seriesVi: "Phong Cảnh", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2025, w: 35, h: 55, tone: "green",
+    note: {
+      en: "A young couple sit close at the bow of a boat, gazing along the emerald Nho Quế River as it winds between the towering limestone walls of Tu San Canyon in Hà Giang. A small boat ahead trails a silver wake toward distant, sunlit peaks. February 2025.",
+      vi: "Đôi trẻ ngồi sát bên nhau ở mũi thuyền, ngắm dòng sông Nho Quế xanh ngọc uốn quanh vách đá vôi sừng sững của hẻm Tu Sản, Hà Giang. Phía trước, một chiếc thuyền nhỏ để lại vệt nước bạc hướng về những đỉnh núi xa đầy nắng. Tháng 2/2025.",
+    },
+    image: { src: "/artworks/tu-san-canyon.jpg", width: 1230, height: 1500, alt: { en: "Painting of a couple seated at a boat's bow looking down an emerald river between tall limestone cliffs, in a cream and gold frame", vi: "Tranh đôi trẻ ngồi ở mũi thuyền nhìn dòng sông xanh ngọc giữa vách đá vôi cao, trong khung kem và vàng" } },
+  },
+  {
+    id: 30, title: "Dance of the Plum Blossoms", vi: "Vũ Điệu Hoa Mận",
+    series: "Portraits", seriesVi: "Chân Dung", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2025, w: 60, h: 80, tone: "sage",
+    note: {
+      en: "A dancer in a flowing white dress, an embroidered sash and a red ribbon headband lifts her arms among orchards of plum blossom, petals drifting like snow around her. Misty violet mountains rise behind a meadow bright with spring grass. February 2025.",
+      vi: "Một thiếu nữ trong tà váy trắng thướt tha, thắt lưng thêu và dải băng đỏ trên đầu giơ tay múa giữa vườn hoa mận, cánh hoa bay như tuyết quanh mình. Những dãy núi tím mờ sương nâng phía sau thảm cỏ xuân tươi sáng. Tháng 2/2025.",
+    },
+    image: { src: "/artworks/dance-of-the-plum-blossoms.jpg", width: 1108, height: 1500, alt: { en: "Painting of a dancer in a white dress with arms raised among white plum blossom trees, with misty mountains behind", vi: "Tranh thiếu nữ váy trắng giơ tay múa giữa những cây hoa mận trắng, núi mờ sương phía sau" } },
+  },
+  {
+    id: 31, title: "Amitabha Buddha", vi: "Đức Phật A Di Đà",
+    series: "Spiritual", seriesVi: "Tâm Linh", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2025, w: 90, h: 120, tone: "warm", available: false,
+    note: {
+      en: "The Buddha's serene face emerges in luminous teal, amber and orange from a deep, dark ground, eyes lowered in meditation. Worked in thick palette-knife relief, the tiled strokes of the background and the gold-flecked curls of the crown catch the light. July 2025.",
+      vi: "Gương mặt Đức Phật an nhiên hiện lên trong sắc lục lam, hổ phách và cam rực từ nền tối sâu thẳm, đôi mắt khép trong thiền định. Tranh được đắp nổi dày bằng dao bay; những mảng màu lát ngói ở nền và búi tóc ánh vàng đón sáng. Tháng 7/2025.",
+    },
+    image: { src: "/artworks/amitabha-buddha.jpg", width: 1108, height: 1500, alt: { en: "Textured palette-knife painting of the Buddha's face in teal, amber and orange against a dark tiled background", vi: "Tranh đắp nổi bằng dao bay gương mặt Đức Phật sắc lục lam, hổ phách và cam trên nền tối lát ngói" } },
   },
 ];
 

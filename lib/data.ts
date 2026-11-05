@@ -82,8 +82,8 @@ const seedArtworks: Artwork[] = ARTWORKS.map((a) => ({
   series: { en: a.series, vi: a.seriesVi },
   medium: { en: a.medium, vi: a.mediumVi },
   year: a.year,
-  w: a.w,
-  h: a.h,
+  w: a.w ?? null,
+  h: a.h ?? null,
   tone: a.tone,
   note: a.note,
   image: a.image
