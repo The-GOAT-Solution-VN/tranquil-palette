@@ -150,12 +150,12 @@ export const ARTWORKS: SeedArtwork[] = [
     image: { src: "/artworks/bronze-buddha.jpg", width: 1164, height: 1500, alt: { en: "Painting of a golden Buddha's face with closed eyes, styled like a bronze statue, in an ornate frame", vi: "Tranh gương mặt Đức Phật nhắm mắt màu vàng đồng như tượng đồng, trong khung chạm hoa văn" } },
   },
   {
-    id: 21, title: "Happiness", vi: "Hạnh Phúc",
+    id: 21, title: "Happiness 🇻🇳🇺🇸", vi: "Hạnh Phúc 🇻🇳🇺🇸",
     series: "Portraits", seriesVi: "Chân Dung", medium: "Oil on canvas", mediumVi: "Sơn dầu",
     year: 2026, w: 40, h: 60, tone: "warm",
     note: {
-      en: "A bride and groom cross a city street hand in hand, seen from behind, the bride's gown trailing and a bouquet held low at her side. Painted entirely in shades of grey, the crossing's stripes and long shadows lead the eye down the avenue ahead. June 2026.",
-      vi: "Cô dâu và chú rể nắm tay nhau băng qua con phố, nhìn từ phía sau; vạt váy cô dâu thướt tha, bó hoa buông nhẹ bên hông. Bức tranh được vẽ hoàn toàn bằng sắc xám, những vạch kẻ đường và bóng đổ dài dẫn mắt người xem về phía trước. Tháng 6/2026.",
+      en: "A bride and groom cross a city street hand in hand, seen from behind, the bride's gown trailing and a bouquet held low at her side. Painted entirely in shades of grey, the crossing's stripes and long shadows lead the eye down the avenue ahead. Titled with the flags of Vietnam and the United States, it celebrates a union between two cultures. June 2026.",
+      vi: "Cô dâu và chú rể nắm tay nhau băng qua con phố, nhìn từ phía sau; vạt váy cô dâu thướt tha, bó hoa buông nhẹ bên hông. Bức tranh được vẽ hoàn toàn bằng sắc xám, những vạch kẻ đường và bóng đổ dài dẫn mắt người xem về phía trước. Tên tranh kèm hai lá cờ Việt Nam và Hoa Kỳ, ngợi ca sự gắn kết của hai nền văn hoá. Tháng 6/2026.",
     },
     image: { src: "/artworks/happiness.jpg", width: 1166, height: 1800, alt: { en: "Black-and-white painting of a bride and groom walking hand in hand across a city crosswalk", vi: "Tranh đen trắng cô dâu và chú rể nắm tay đi qua vạch kẻ đường giữa phố" } },
   },
@@ -168,6 +168,46 @@ export const ARTWORKS: SeedArtwork[] = [
       vi: "Những đóa sen trắng hồng vươn lên từ mặt ao tĩnh lặng trong ánh vàng ấm áp, giữa gương sen, lá cuốn và nụ búp. Đàn cá koi lượn dưới nước, bướm và chuồn chuồn chấp chới phía trên, gửi gắm lời chúc bình an, sức khoẻ và may mắn. Tháng 11/2025.",
     },
     image: { src: "/artworks/an-khang.jpg", width: 1500, height: 1253, alt: { en: "Painting of white lotus flowers, buds and seed pods over a pond with koi, butterflies and dragonflies, in an ornate gold frame", vi: "Tranh hoa sen trắng, nụ và gương sen trên ao có cá koi, bướm và chuồn chuồn, trong khung vàng chạm hoa văn" } },
+  },
+  {
+    id: 23, title: "The Rooster", vi: "Con Gà Trống",
+    series: "Animals", seriesVi: "Động Vật", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2024, w: 40, h: 50, tone: "orange",
+    note: {
+      en: "A proud rooster stands tall in full plumage, with flame-orange hackles, a deep blue-black body and a sweeping tail, set against a glowing meadow flecked with small yellow flowers. August 2024.",
+      vi: "Chú gà trống đứng hiên ngang trong bộ lông rực rỡ, cổ cam lửa, thân xanh đen thẫm, đuôi cong vút, trên nền đồng cỏ lung linh điểm những bông hoa vàng nhỏ. Tháng 8/2024.",
+    },
+    image: { src: "/artworks/the-rooster.jpg", width: 1310, height: 1800, alt: { en: "Painting of a rooster with orange and blue-black plumage and a red comb, standing before a glowing meadow, in a dark wood frame", vi: "Tranh chú gà trống lông cam và xanh đen, mào đỏ, đứng trước đồng cỏ lung linh, trong khung gỗ sẫm" } },
+  },
+  {
+    id: 24, title: "Auckland Evening", vi: "Chiều Auckland",
+    series: "Landscapes", seriesVi: "Phong Cảnh", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2025, w: 62, h: 82, tone: "orange", available: false,
+    note: {
+      en: "A street runs straight toward the setting sun between towering buildings, with a construction crane and traffic lights glowing red in the dusk. The Sky Tower rises beyond bare branches as birds wheel overhead, and saturated oranges, magentas and violets turn Auckland's evening into a vision of fire. 2025.",
+      vi: "Con đường thẳng tắp hướng về mặt trời lặn giữa những toà nhà cao tầng; cần cẩu và đèn giao thông đỏ rực trong hoàng hôn. Tháp Sky Tower nhô lên sau những cành cây trơ lá, đàn chim sải cánh trên cao; những sắc cam, tím và hồng sẫm rực lửa biến buổi chiều Auckland thành một thị kiến cháy bỏng. Năm 2025.",
+    },
+    image: { src: "/artworks/auckland-evening.jpg", width: 1219, height: 1800, alt: { en: "Painting of an Auckland street at sunset in fiery oranges and violets, with the Sky Tower, a crane and traffic lights", vi: "Tranh con phố Auckland lúc hoàng hôn với sắc cam và tím rực lửa, có tháp Sky Tower, cần cẩu và đèn giao thông" } },
+  },
+  {
+    id: 25, title: "Golden Season", vi: "Mùa Vàng",
+    series: "Landscapes", seriesVi: "Phong Cảnh", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2025, w: 240, h: 135, tone: "gold", available: false,
+    note: {
+      en: "A golden harvest spreads to the horizon, a winding canal carrying ducks and water lilies through ripe rice fields. In the foreground, young women in traditional dress pause beneath a tree beside sheaves of rice and woven baskets, while farmers work the distant paddies under a sun-washed sky. August 2025.",
+      vi: "Mùa gặt vàng trải dài đến tận chân trời, dòng kênh uốn lượn đưa vịt và hoa súng qua những thửa ruộng lúa chín. Phía trước, các thiếu nữ trong trang phục truyền thống nghỉ chân dưới gốc cây bên những bó lúa và chiếc giỏ đan; xa xa, người nông dân vẫn miệt mài trên đồng dưới bầu trời đầy nắng. Tháng 8/2025.",
+    },
+    image: { src: "/artworks/golden-season.jpg", width: 1800, height: 1057, alt: { en: "Wide painting of golden rice fields with a winding canal, ducks and young women in traditional dress resting under a tree", vi: "Tranh toàn cảnh cánh đồng lúa vàng với dòng kênh uốn lượn, đàn vịt và các thiếu nữ trong trang phục truyền thống nghỉ dưới gốc cây" } },
+  },
+  {
+    id: 26, title: "April Returns", vi: "Tháng Tư Về",
+    series: "Portraits", seriesVi: "Chân Dung", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2026, w: 60, h: 80, tone: "peach",
+    note: {
+      en: "A woman in a vivid red áo dài sits at an upright piano, glancing down at an armful of white lilies, the flower that heralds April in Hanoi. The dress is built from bold, blocky strokes of red, orange and pink in a patchwork style, set against a hazy golden ground. May 2026.",
+      vi: "Một thiếu nữ trong tà áo dài đỏ rực ngồi bên cây đàn piano, cúi nhìn bó hoa loa kèn trắng, loài hoa báo hiệu tháng Tư Hà Nội. Tà áo được vẽ bằng những mảng màu đỏ, cam, hồng táo bạo theo phong cách mảng miếng trên nền vàng mờ ảo. Tháng 5/2026.",
+    },
+    image: { src: "/artworks/april-returns.jpg", width: 1337, height: 1800, alt: { en: "Painting of a woman in a red áo dài seated at a piano, holding white lilies, in blocky patchwork brushwork", vi: "Tranh thiếu nữ áo dài đỏ ngồi bên đàn piano, cầm hoa loa kèn trắng, vẽ theo phong cách mảng miếng" } },
   },
 ];
 
