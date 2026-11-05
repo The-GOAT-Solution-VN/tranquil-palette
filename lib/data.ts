@@ -38,11 +38,15 @@ function imageRef(
 ): ImageRef | null {
   const img = source as { asset?: unknown; alt?: Locale } | null | undefined;
   if (!img?.asset) return null;
+  // Sanity asset ids encode the pixel size: image-<hash>-<w>x<h>-<ext>.
+  const ref = (img.asset as { _ref?: string })._ref;
+  const dims = typeof ref === "string" ? /-(\d+)x(\d+)-[a-z]+$/.exec(ref) : null;
   try {
     return {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       url: urlForImage(img as any).width(width).url(),
       alt: img.alt ?? null,
+      ...(dims ? { width: Number(dims[1]), height: Number(dims[2]) } : {}),
     };
   } catch {
     return null;
