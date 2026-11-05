@@ -1,11 +1,22 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useLang } from "@/lib/i18n";
 import { toneGradient } from "@/lib/tones";
 import type { Artwork } from "@/lib/types";
 
+/**
+ * Full-screen artwork viewer.
+ *
+ * Layout (see `.tp-lb*` in globals.css):
+ *  - Phones / narrow screens: a column — slim top bar, the painting filling all
+ *    remaining space, and a compact caption below that expands on demand.
+ *  - Wide or landscape screens: the painting on the left, the full caption on
+ *    the right.
+ * The overlay is `position: fixed; inset: 0` (not 100vh/100dvh) so it always
+ * matches the visible screen, including iOS Safari's collapsing toolbars.
+ */
 export function Lightbox({
   items,
   index,
@@ -17,8 +28,9 @@ export function Lightbox({
   onIndex: (i: number) => void;
   onClose: () => void;
 }) {
-  const { t, loc } = useLang();
+  const { loc } = useLang();
   const dialogRef = useRef<HTMLDivElement>(null);
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
   const a = items[index];
 
   const step = useCallback(
@@ -36,10 +48,12 @@ export function Lightbox({
       else if (e.key === "ArrowLeft") step(-1);
       else if (e.key === "Tab") {
         // Simple focus trap within the dialog.
-        const focusables = dialogRef.current?.querySelectorAll<HTMLElement>(
-          'button, a[href], [tabindex]:not([tabindex="-1"])',
-        );
-        if (!focusables || focusables.length === 0) return;
+        const focusables = Array.from(
+          dialogRef.current?.querySelectorAll<HTMLElement>(
+            'button, a[href], [tabindex]:not([tabindex="-1"])',
+          ) ?? [],
+        ).filter((el) => el.offsetParent !== null);
+        if (focusables.length === 0) return;
         const first = focusables[0];
         const last = focusables[focusables.length - 1];
         if (e.shiftKey && document.activeElement === first) {
@@ -63,126 +77,128 @@ export function Lightbox({
 
   if (!a) return null;
 
-  const size = a.w && a.h ? `${a.w} × ${a.h} cm` : "";
+  const title = loc(a.title) ?? "Artwork";
+
+  // Swipe left / right on the painting to move between works.
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStart.current =
+      e.touches.length === 1
+        ? { x: e.touches[0].clientX, y: e.touches[0].clientY }
+        : null;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    const s = touchStart.current;
+    touchStart.current = null;
+    if (!s) return;
+    const dx = e.changedTouches[0].clientX - s.x;
+    const dy = e.changedTouches[0].clientY - s.y;
+    if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      step(dx < 0 ? 1 : -1);
+    }
+  };
 
   return (
     <div
+      ref={dialogRef}
+      tabIndex={-1}
       role="dialog"
       aria-modal="true"
-      aria-label={loc(a.title) ?? "Artwork"}
+      aria-label={title}
       data-testid="lightbox"
-      onClick={onClose}
-      style={{
-        position: "fixed",
-        inset: 0,
-        zIndex: 100,
-        background: "rgba(20,20,16,0.92)",
-        backdropFilter: "blur(8px)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "clamp(16px,4vw,56px)",
-      }}
+      className="tp-lb"
     >
-      <button type="button" aria-label="Close" onClick={onClose} style={iconBtn(24, 24)}>✕</button>
-      <button type="button" aria-label="Previous" data-testid="lb-prev" onClick={(e) => { e.stopPropagation(); step(-1); }} style={{ ...iconBtn(undefined, undefined), left: "clamp(12px,3vw,40px)", top: "50%", transform: "translateY(-50%)" }}>‹</button>
-      <button type="button" aria-label="Next" data-testid="lb-next" onClick={(e) => { e.stopPropagation(); step(1); }} style={{ ...iconBtn(undefined, undefined), right: "clamp(12px,3vw,40px)", top: "50%", transform: "translateY(-50%)" }}>›</button>
+      <div className="tp-lb-bar">
+        <div className="tp-lb-count" aria-live="polite">
+          {index + 1} / {items.length}
+        </div>
+        <button type="button" aria-label="Close" className="tp-lb-btn" onClick={onClose}>
+          ✕
+        </button>
+      </div>
 
-      <div
-        ref={dialogRef}
-        tabIndex={-1}
-        onClick={(e) => e.stopPropagation()}
-        className="tp-lb-grid"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "minmax(0,1.2fr) minmax(0,0.8fr)",
-          gap: "clamp(20px,3vw,52px)",
-          alignItems: "center",
-          maxWidth: 1180,
-          width: "100%",
-          outline: "none",
-        }}
-      >
-        <div style={{ background: "#fff", padding: 12, borderRadius: 2, boxShadow: "0 40px 90px -40px rgba(0,0,0,0.6)" }}>
-          <div style={{ position: "relative", width: "100%", paddingTop: ratioPad(a), background: toneGradient(a.tone) }}>
-            {a.image?.url && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={a.image.url} alt={loc(a.image.alt) ?? loc(a.title) ?? "Artwork"} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: a.image.width ? "contain" : "cover" }} />
-            )}
-          </div>
+      <div className="tp-lb-body">
+        <div
+          className="tp-lb-stage"
+          data-testid="lb-stage"
+          onClick={(e) => {
+            // A tap on the empty space around the painting closes the viewer.
+            if (e.target === e.currentTarget) onClose();
+          }}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+        >
+          {a.image?.url ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              key={a.id}
+              className="tp-lb-img"
+              src={a.image.url}
+              alt={loc(a.image.alt) ?? title}
+              decoding="async"
+              draggable={false}
+            />
+          ) : (
+            <div
+              className="tp-lb-img tp-lb-ph"
+              style={{
+                aspectRatio: a.w && a.h ? `${a.w} / ${a.h}` : "4 / 5",
+                background: toneGradient(a.tone),
+              }}
+            />
+          )}
+          <button type="button" aria-label="Previous" data-testid="lb-prev" className="tp-lb-btn tp-lb-nav tp-lb-prev" onClick={() => step(-1)}>‹</button>
+          <button type="button" aria-label="Next" data-testid="lb-next" className="tp-lb-btn tp-lb-nav tp-lb-next" onClick={() => step(1)}>›</button>
         </div>
 
-        <div style={{ color: "#e9e9e1" }}>
-          <div style={{ fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "#a9b389", marginBottom: 14 }}>{loc(a.series)}</div>
-          <h2 style={{ fontFamily: "var(--font-serif)", fontWeight: 500, fontSize: "clamp(30px,3.4vw,46px)", lineHeight: 1.05, margin: "0 0 4px", color: "#fff" }}>{loc(a.title)}</h2>
-          <div style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", fontSize: 20, color: "#b9c293", marginBottom: 24 }}>{a.title.vi}</div>
-
-          <dl style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: "10px 24px", margin: "0 0 26px", fontSize: 13.5 }}>
-            <dt style={dtStyle}>{t.lbMedium}</dt><dd style={ddStyle}>{loc(a.medium)}</dd>
-            {size && (<><dt style={dtStyle}>{t.lbSize}</dt><dd style={ddStyle}>{size}</dd></>)}
-            <dt style={dtStyle}>{t.lbYear}</dt><dd style={ddStyle}>{a.year}</dd>
-            {!a.available && (<><dt style={dtStyle}>{t.lbCollection}</dt><dd style={ddStyle}>{t.lbPrivate}</dd></>)}
-          </dl>
-
-          <p style={{ fontSize: 14.5, lineHeight: 1.8, color: "#b1b1a6", fontWeight: 300, margin: "0 0 26px" }}>{loc(a.note)}</p>
-
-          <Link
-            href={`/visit?artwork=${encodeURIComponent(loc(a.title) ?? "")}`}
-            className="tp-cta-gold"
-            style={{
-              display: "inline-block",
-              fontFamily: "var(--font-sans)",
-              fontSize: 11.5,
-              fontWeight: 600,
-              letterSpacing: "0.16em",
-              textTransform: "uppercase",
-              color: "#27271f",
-              background: "#EEA71E",
-              border: "none",
-              padding: "14px 26px",
-              borderRadius: 999,
-              cursor: "pointer",
-              textDecoration: "none",
-              transition: "background .3s",
-            }}
-          >
-            {t.lbEnquire}
-          </Link>
-          <div style={{ marginTop: 22, fontSize: 12, letterSpacing: "0.1em", color: "#9a9a8e" }}>
-            {index + 1} / {items.length}
-          </div>
-        </div>
+        {/* Keyed by artwork so the expanded state resets when you move on. */}
+        <Caption key={a.id} a={a} />
       </div>
     </div>
   );
 }
 
-/** Box proportions: the photo's own ratio when known, else the stated cm size. */
-function ratioPad(a: Artwork): string {
-  if (a.image?.width && a.image?.height) return `${(a.image.height / a.image.width) * 100}%`;
-  if (a.w && a.h) return `${(a.h / a.w) * 100}%`;
-  return "120%";
-}
+function Caption({ a }: { a: Artwork }) {
+  const { t, loc } = useLang();
+  const [open, setOpen] = useState(false);
+  const size = a.w && a.h ? `${a.w} × ${a.h} cm` : "";
+  const summary = [loc(a.medium), size, a.year].filter(Boolean).join(" · ");
 
-function iconBtn(top?: number, right?: number): React.CSSProperties {
-  return {
-    position: "absolute",
-    top: top !== undefined ? top : undefined,
-    right: right !== undefined ? right : undefined,
-    zIndex: 110,
-    width: 46,
-    height: 46,
-    borderRadius: 999,
-    border: "1px solid rgba(255,255,255,0.2)",
-    background: "rgba(255,255,255,0.06)",
-    color: "#fff",
-    fontSize: 22,
-    cursor: "pointer",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  };
-}
+  return (
+    <div className="tp-lb-cap" data-open={open}>
+      <div className="tp-lb-head">
+        <div className="tp-lb-headtext">
+          <div className="tp-lb-series">{loc(a.series)}</div>
+          <h2 className="tp-lb-title">{loc(a.title)}</h2>
+          <div className="tp-lb-vi">{a.title.vi}</div>
+          <div className="tp-lb-meta">{summary}</div>
+        </div>
+        <button
+          type="button"
+          className="tp-lb-toggle"
+          aria-expanded={open}
+          aria-controls="tp-lb-more"
+          onClick={() => setOpen((o) => !o)}
+        >
+          {open ? t.lbHideDetails : t.lbDetails}
+        </button>
+      </div>
 
-const dtStyle: React.CSSProperties = { fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "#a3a396", margin: 0 };
-const ddStyle: React.CSSProperties = { margin: 0, color: "#e9e9e1" };
+      <p className="tp-lb-note">{loc(a.note)}</p>
+
+      <div className="tp-lb-more" id="tp-lb-more">
+        <dl className="tp-lb-dl">
+          <dt>{t.lbMedium}</dt><dd>{loc(a.medium)}</dd>
+          {size && (<><dt>{t.lbSize}</dt><dd>{size}</dd></>)}
+          <dt>{t.lbYear}</dt><dd>{a.year}</dd>
+          {!a.available && (<><dt>{t.lbCollection}</dt><dd>{t.lbPrivate}</dd></>)}
+        </dl>
+        <Link
+          href={`/visit?artwork=${encodeURIComponent(loc(a.title) ?? "")}`}
+          className="tp-cta-gold tp-lb-cta"
+        >
+          {t.lbEnquire}
+        </Link>
+      </div>
+    </div>
+  );
+}

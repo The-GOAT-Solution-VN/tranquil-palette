@@ -152,3 +152,206 @@ body {
   .tp-footer-grid { grid-template-columns: 1fr !important; }
   .tp-stats-grid { grid-template-columns: 1fr 1fr !important; }
 }
+
+/* ----------------------------------------------------------------------------
+   Lightbox (artwork viewer)
+
+   Phones / narrow: top bar, painting filling the remaining space, compact
+   caption underneath (expandable). Wide or landscape: painting left, full
+   caption right. The overlay is position:fixed + inset:0 rather than
+   100vh/100dvh so it matches the visible screen on iOS Safari; dvh is used
+   only to cap the caption's height.
+---------------------------------------------------------------------------- */
+.tp-lb {
+  --lb-pad: 8px;
+  --lb-mat: 6px;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  background: #141410;
+  color: #e9e9e1;
+  outline: none;
+  overscroll-behavior: contain;
+}
+.tp-lb-bar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: env(safe-area-inset-top, 0px) calc(6px + env(safe-area-inset-right, 0px)) 0 calc(16px + env(safe-area-inset-left, 0px));
+}
+.tp-lb-count { font-size: 12px; letter-spacing: 0.12em; color: #9a9a8e; }
+
+.tp-lb-btn {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.tp-lb-btn:hover { background: rgba(255, 255, 255, 0.16); }
+
+.tp-lb-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.tp-lb-stage {
+  position: relative;
+  flex: 1 1 0;
+  min-height: 0;
+  min-width: 0;
+  touch-action: pan-y pinch-zoom;
+}
+.tp-lb-img {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  box-sizing: border-box;
+  width: auto;
+  height: auto;
+  max-width: calc(100% - 2 * var(--lb-pad));
+  max-height: calc(100% - 2 * var(--lb-pad));
+  border: var(--lb-mat) solid #fff;
+  background: #fff;
+  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.75);
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.tp-lb-ph { height: calc(100% - 2 * var(--lb-pad)); }
+.tp-lb-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: rgba(20, 20, 16, 0.55);
+}
+.tp-lb-prev { left: calc(8px + env(safe-area-inset-left, 0px)); }
+.tp-lb-next { right: calc(8px + env(safe-area-inset-right, 0px)); }
+
+/* Caption: compact by default (phones). */
+.tp-lb-cap {
+  flex: 0 0 auto;
+  max-height: 50vh;
+  max-height: 50dvh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px calc(16px + env(safe-area-inset-right, 0px)) calc(14px + env(safe-area-inset-bottom, 0px)) calc(16px + env(safe-area-inset-left, 0px));
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(20, 20, 16, 0.72);
+}
+.tp-lb-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.tp-lb-headtext { min-width: 0; }
+.tp-lb-series { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: #a9b389; margin-bottom: 4px; }
+.tp-lb-title { font-family: var(--font-serif); font-weight: 500; font-size: 24px; line-height: 1.1; margin: 0; color: #fff; }
+.tp-lb-vi { font-family: var(--font-serif); font-style: italic; font-size: 16px; color: #b9c293; margin-top: 2px; }
+.tp-lb-meta { font-size: 12.5px; color: #a3a396; margin-top: 6px; }
+.tp-lb-toggle {
+  flex: 0 0 auto;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: transparent;
+  color: #e9e9e1;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.tp-lb-note { font-size: 14px; line-height: 1.65; color: #b1b1a6; font-weight: 300; margin: 10px 0 0; }
+.tp-lb-cap[data-open="false"] .tp-lb-note {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.tp-lb-cap[data-open="false"] .tp-lb-more { display: none; }
+.tp-lb-dl { display: grid; grid-template-columns: auto 1fr; gap: 8px 20px; margin: 16px 0; font-size: 13.5px; }
+.tp-lb-dl dt { margin: 0; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #a3a396; }
+.tp-lb-dl dd { margin: 0; color: #e9e9e1; }
+.tp-lb-cta {
+  display: inline-block;
+  padding: 14px 26px;
+  border-radius: 999px;
+  background: #EEA71E;
+  color: #27271f;
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background .3s;
+}
+
+/* Very short screens (foldable cover displays, landscape phones in column
+   layout): give the painting everything, keep only the essentials visible. */
+@media (max-height: 520px) {
+  .tp-lb-cap[data-open="false"] .tp-lb-note,
+  .tp-lb-cap[data-open="false"] .tp-lb-vi { display: none; }
+  .tp-lb-title { font-size: 21px; }
+}
+/* Very narrow screens. */
+@media (max-width: 340px) {
+  .tp-lb-toggle { padding: 0 12px; }
+  .tp-lb-title { font-size: 20px; }
+}
+
+/* Wide or landscape: painting left, full caption right. */
+@media (min-width: 861px), (orientation: landscape) and (min-width: 560px) {
+  .tp-lb { --lb-pad: 20px; --lb-mat: 10px; }
+  .tp-lb-bar { padding-left: calc(28px + env(safe-area-inset-left, 0px)); padding-right: calc(16px + env(safe-area-inset-right, 0px)); }
+  .tp-lb-body { flex-direction: row; }
+  .tp-lb-nav { background: rgba(255, 255, 255, 0.06); }
+  .tp-lb-cap {
+    flex: 0 0 clamp(280px, 32vw, 420px);
+    max-height: none;
+    padding: 8px calc(28px + env(safe-area-inset-right, 0px)) 28px 8px;
+    border-top: 0;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+  }
+  /* margin:auto centres the text when there is room and top-aligns it (so it
+     stays scrollable) when it is taller than the screen — unlike
+     justify-content:center, which clips the top. */
+  .tp-lb-cap > :first-child { margin-top: auto; }
+  .tp-lb-cap > :last-child { margin-bottom: auto; }
+  .tp-lb-head { flex-direction: column; gap: 0; }
+  .tp-lb-title { font-size: clamp(24px, 3.2vw, 46px); }
+  .tp-lb-vi { font-size: 20px; margin-bottom: 18px; }
+  .tp-lb-toggle,
+  .tp-lb-meta { display: none; }
+  .tp-lb .tp-lb-cap[data-open] .tp-lb-note { display: block; overflow: visible; -webkit-line-clamp: unset; font-size: 14.5px; line-height: 1.8; margin-top: 0; }
+  .tp-lb .tp-lb-cap[data-open] .tp-lb-vi { display: block; }
+  .tp-lb .tp-lb-cap[data-open] .tp-lb-more { display: block; }
+}
+
+/* Dual-screen devices in spanned mode (Surface Duo, Edge): painting on one
+   screen, caption on the other, nothing under the hinge. Browsers without
+   viewport-segments support ignore this block. */
+@media (horizontal-viewport-segments: 2) {
+  .tp-lb-body { flex-direction: row; }
+  .tp-lb-stage { flex: 0 0 env(viewport-segment-width 0 0, 50%); }
+  .tp-lb-cap {
+    flex: 1 1 0;
+    max-height: none;
+    margin-left: calc(env(viewport-segment-left 1 0, 50%) - env(viewport-segment-right 0 0, 50%));
+  }
+}
