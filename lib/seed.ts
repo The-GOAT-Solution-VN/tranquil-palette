@@ -24,8 +24,9 @@ export interface SeedArtwork {
   medium: string; // English medium
   mediumVi: string;
   year: number;
-  w: number;
-  h: number;
+  /** Size in cm; omit when not recorded. */
+  w?: number;
+  h?: number;
   tone: Tone;
   note: Locale;
   featured?: boolean;
@@ -208,6 +209,16 @@ export const ARTWORKS: SeedArtwork[] = [
       vi: "Một thiếu nữ trong tà áo dài đỏ rực ngồi bên cây đàn piano, cúi nhìn bó hoa loa kèn trắng, loài hoa báo hiệu tháng Tư Hà Nội. Tà áo được vẽ bằng những mảng màu đỏ, cam, hồng táo bạo theo phong cách mảng miếng trên nền vàng mờ ảo. Tháng 5/2026.",
     },
     image: { src: "/artworks/april-returns.jpg", width: 1337, height: 1800, alt: { en: "Painting of a woman in a red áo dài seated at a piano, holding white lilies, in blocky patchwork brushwork", vi: "Tranh thiếu nữ áo dài đỏ ngồi bên đàn piano, cầm hoa loa kèn trắng, vẽ theo phong cách mảng miếng" } },
+  },
+  {
+    id: 27, title: "Violet Dusk", vi: "Hoàng Hôn Tím",
+    series: "Portraits", seriesVi: "Chân Dung", medium: "Acrylic on canvas", mediumVi: "Acrylic",
+    year: 2026, tone: "sage",
+    note: {
+      en: "A woman with flowing copper-red hair walks away through a vast field of violet blossoms, her sapphire gown swirling around her, toward a low sun glowing on the horizon. The whole scene is bathed in twilight purples, with tiny points of light scattered like fireflies. 2026.",
+      vi: "Một thiếu nữ với mái tóc đỏ đồng xoã dài bước đi giữa cánh đồng hoa tím bát ngát, tà váy xanh tím thướt tha, hướng về mặt trời thấp đang toả sáng nơi chân trời. Cả khung cảnh chìm trong sắc tím hoàng hôn, điểm xuyết những đốm sáng li ti như đom đóm. Năm 2026.",
+    },
+    image: { src: "/artworks/violet-dusk.jpg", width: 1000, height: 1500, alt: { en: "Painting of a woman with long copper-red hair in a violet gown walking through a field of purple flowers toward a glowing sunset", vi: "Tranh thiếu nữ tóc đỏ đồng dài, váy tím, bước đi giữa cánh đồng hoa tím hướng về mặt trời lặn rực sáng" } },
   },
 ];
 

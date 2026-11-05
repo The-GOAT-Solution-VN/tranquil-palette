@@ -10,10 +10,10 @@ test.describe("content / CMS integration", () => {
     await expect(page.getByRole("heading", { name: "Upcoming exhibition" })).toBeVisible();
   });
 
-  test("gallery renders all fourteen seeded works", async ({ page }) => {
+  test("gallery renders all fifteen seeded works", async ({ page }) => {
     await page.goto("/gallery");
     const cards = page.locator('[data-testid="gal-container"] button.tp-card');
-    await expect(cards).toHaveCount(14);
+    await expect(cards).toHaveCount(15);
   });
 
   test("exhibitions render with status pills", async ({ page }) => {
