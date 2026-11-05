@@ -6,6 +6,7 @@ import { useLang } from "@/lib/i18n";
 import { Reveal } from "@/components/motion/Reveal";
 import { Parallax } from "@/components/motion/Parallax";
 import { ArtworkImage } from "@/components/ArtworkImage";
+import { LoopVideo } from "@/components/about/LoopVideo";
 import { Eyebrow, PillLink, TextLink, Frame } from "@/components/ui/Atoms";
 import type { Artwork, Exhibition, Post, SiteContent } from "@/lib/types";
 
@@ -198,7 +199,14 @@ export function HomeView({
         <div className="tp-grid-2" style={{ maxWidth: 1180, margin: "0 auto", display: "grid", gridTemplateColumns: "0.82fr 1.18fr", gap: "clamp(28px,4vw,72px)", alignItems: "center" }}>
           <Reveal style={{ position: "relative" }}>
             <Frame pad={12}>
-              <ArtworkImage image={site.portrait} tone="warm" paddingTop="124%" alt={t.portraitTag} sizes="(max-width:768px) 100vw, 40vw" />
+              <div style={{ position: "relative", width: "100%", paddingTop: "124%", background: "#E9E4D4", overflow: "hidden" }}>
+                <LoopVideo
+                  mp4="/video/artist-loop.mp4"
+                  webm="/video/artist-loop.webm"
+                  poster="/video/artist-poster.jpg"
+                  label={t.portraitTag}
+                />
+              </div>
             </Frame>
             <span style={{ position: "absolute", left: -14, bottom: -14, fontFamily: "var(--font-sans)", fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "#6f6f64", background: "var(--tp-bg)", padding: "4px 8px" }}>{t.portraitTag}</span>
           </Reveal>
